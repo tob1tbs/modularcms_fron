@@ -1,8 +1,11 @@
 <?php
 
 // GENERAL ROUTES
-Route::group(['prefix' => 'checkout', 'middleware' => []], function () {
-    Route::get('/', 'CheckoutController@actionCheckoutIndex')->name('actionCheckoutIndex');
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function(){
+    Route::group(['prefix' => 'checkout', 'middleware' => []], function () {
+        Route::get('/', 'CheckoutController@actionCheckoutIndex')->name('actionCheckoutIndex');
+        Route::get('/cart', 'CheckoutController@actionCartIndex')->name('actionCartIndex');
+    });
 });
 
 // AJAX ROUTES

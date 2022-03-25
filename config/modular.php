@@ -8,11 +8,11 @@ return [
     ],
 
     'modules' => [
-        'Users',
         'Main',
+        'Products',
+        'Users',
         'Orders',
         'Checkout',
         'Constructor',
-        'Products',
     ]
 ];

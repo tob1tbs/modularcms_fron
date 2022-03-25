@@ -1,9 +1,11 @@
 <?php
 
 // GENERAL ROUTES
-Route::group(['prefix' => 'products', 'middleware' => []], function () {
-    Route::get('/', 'ProductsController@actionProductsIndex')->name('actionProductsIndex');
-    Route::get('/view/{slug}', 'ProductsController@actionProductsView')->name('actionProductsView');
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function(){
+    Route::group(['prefix' => 'products', 'middleware' => []], function () {
+        Route::get('/{slug}', 'ProductsController@actionProductsView')->name('actionProductsView');
+        Route::get('/', 'ProductsController@actionProductsIndex')->name('actionProductsIndex');
+    });
 });
 
 // AJAX ROUTES

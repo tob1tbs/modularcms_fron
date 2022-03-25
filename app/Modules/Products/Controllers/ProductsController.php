@@ -15,7 +15,38 @@ class ProductsController extends Controller
         //
     }
 
-    public function actionProductsIndex() {
-        //
+    public function actionProductsIndex(Request $Request) {
+        if (view()->exists('products.products_index')) {
+            $Product = new Product();
+            $ProductList = $Product::where('deleted_at_int', '!=', 0);
+
+            $ProductList = $ProductList->get();
+
+            $data = [
+                'product_list' => $ProductList,
+                'seo' => $this->seoList('products'),
+            ];
+
+            return view('products.products_index', $data);
+        } else {
+            abort('404');
+        }
+    }
+
+    public function actionProductsView(Request $Request) {
+        if (view()->exists('products.products_view')) {
+
+            $Product = new Product();
+            $ProductData = $Product::where('slug', $Request->slug)->first();
+
+            $data = [
+                'product_data' => $ProductData,
+                'seo' => $this->seoList('products'),
+            ];
+
+            return view('products.products_view', $data);
+        } else {
+            abort('404');
+        }
     }
 }

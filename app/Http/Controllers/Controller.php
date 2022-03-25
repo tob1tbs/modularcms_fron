@@ -7,18 +7,22 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+use App\Modules\General\Models\Seo;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function monthList() {
-        $MonthList = [ '01' => 'იანვარი', '02' => 'თებერვალი', '03' => 'მარტი', '04' => 'აპრილი', '05' => 'მაისი', '06' => 'ივნისი', '07' => 'ივლისი', '08' => 'აგვისტო', '09' => 'სექტემბერი', '10' => 'ოქტომბერი', '11' => 'ნოემბერი', '12' => 'დეკემბერი'];
-        return $MonthList;
-    }
+    public function seoList($page_key) {
+        $Seo = new Seo();
+        $SeoData = $Seo::where('name', $page_key)->first();
 
-    public function yearList() {
-        $YearList = ['2021', '2022', '2023'];
+        $SeoItem = [
+            'title' => json_decode($SeoData->value)->title_ge,
+            'description' => json_decode($SeoData->value)->description_ge,
+            'keywords' => json_decode($SeoData->value)->keywords_ge,
+        ];
 
-        return $YearList;
+        return $SeoItem;
     }
 }
