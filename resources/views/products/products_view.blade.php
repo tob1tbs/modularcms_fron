@@ -28,8 +28,8 @@
                         </div>
                         <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                             <div class="product-item">
-                                @foreach($product_data->getProductGallery)
-                                <img class="product-single-image" src="{{ $product_data->path }}" data-zoom-image="{{ $product_data->path }}" width="468" height="468" alt="product" />
+                                @foreach($product_data->getProductGallery as $gallery_item)
+                                <img class="product-single-image" src="{{ $gallery_item->path }}" data-zoom-image="{{ $gallery_item->path }}" width="468" height="468" alt="product" />
                                 @endforeach
                             </div>
                         </div>
@@ -39,9 +39,9 @@
                     </div>
 
                     <div class="prod-thumbnail owl-dots">
-                        @foreach($product_data->getProductGallery)
+                        @foreach($product_data->getProductGallery as $gallery_item)
                         <div class="owl-dot">
-                            <img src="{{ $product_data->path }}" width="110" height="110" alt="product-thumbnail" />
+                            <img src="{{ $gallery_item->path }}" width="110" height="110" alt="product-thumbnail" />
                         </div>
                         @endforeach
                     </div>
