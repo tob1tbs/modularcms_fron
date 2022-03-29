@@ -68,25 +68,6 @@
                             <span class="product-info-name">Release date:</span>
                             <span class="product-info">2018-05-15</span>
                         </div>
-                        <div class="product-info-developer">
-                            <span class="product-info-name">Developer:</span>
-                            <span class="product-info">Porto Software</span>
-                        </div>
-                        <div class="product-info-publisher">
-                            <span class="product-info-name">Publisher:</span>
-                            <span class="product-info">Porto Games</span>
-                        </div>
-                        <div class="product-info-gamemode">
-                            <span class="product-info-name">Game Mode:</span>
-                            <span class="product-info">Coop,</span>
-                            <span class="product-info">Multiplayer,</span>
-                            <span class="product-info">Single-player</span>
-                        </div>
-                        <div class="product-info-rate">
-                            <span class="product-info-name">Rated:</span>
-                            <span class="product-info-ratenum">18</span>
-                            <span class="product-info">not recommended for people under 18</span>
-                        </div>
                     </div>
                     <ul class="single-info-list">
                         <li>
@@ -108,7 +89,7 @@
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text">
                         </div>
-                        <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to Cart</a>
+                        <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="{{ trans('site.add_to_cart') }}">{{ trans('site.add_to_cart') }}</a>
                         <a href="{{ route('actionCartIndex') }}" class="btn btn-primary text-white view-cart d-none">{{ trans('site.cart') }}:</a>
                     </div>
                     <hr class="divider mb-0 mt-0">
