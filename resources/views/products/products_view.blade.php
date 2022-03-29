@@ -24,12 +24,10 @@
                     <div class="product-slider-container">
                         <div class="label-group">
                             <div class="product-label label-hot">HOT</div>
-                            <!---->
                             <div class="product-label label-sale">
                                 -16%
                             </div>
                         </div>
-
                         <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                             <div class="product-item">
                                 <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-1-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-1-big.jpg" width="468" height="468" alt="product" />
