@@ -2,6 +2,7 @@
 
 // GENERAL ROUTES
 Route::group(['prefix' => 'users', 'middleware' => []], function () {
+    Route::get('/login', 'UsersController@actionUsersLogin')->name('actionUsersLogin');
     Route::get('/view/{user_id}', 'UsersController@actionUsersView')->name('actionUsersView');
     Route::get('/orders/{user_id}', 'UsersController@actionUsersOrders')->name('actionUsersOrders');
 });

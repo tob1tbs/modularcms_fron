@@ -25,7 +25,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a href="demo31.html" class="logo">
-                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="Porto Logo">
+                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="">
                 </a>
             </div>
             <div class="header-center">
@@ -39,7 +39,7 @@
                                         <a href="#" class="nolink">{{ trans('site.categories') }}</a>
                                         <ul class="submenu">
                                             @foreach($productCategoryList as $category_item)
-                                            <li><a href="product.html">{{ $category_item->name }}</a></li>
+                                            <li><a href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ $category_item->name_ge }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -59,37 +59,25 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="" target="_blank"><i class="icon-star-empty mr-3"></i>Buy Porto</a></li>
-                        <li class="menu-deal"><a href="#"><i class="icon-tag-percent mr-3"></i>Deals</a></li>
+                        <li class="menu-deal"><a href="{{ route('actionConstructorIndex') }}"><i class="icon-wrench icons mr-3"></i></i>{{ trans('site.build_your_pc') }}</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="header-right">
-                <a href="login.html" class="header-icon header-icon-user mb-0" title="Login"><i class="icon-user-2"></i></a>
+                <a href="{{ route('actionUsersLogin') }}" class="header-icon header-icon-user mb-0" title="Login"><i class="icon-user-2"></i></a>
                 <div class="header-icon header-search header-search-popup header-search-category d-none d-sm-block mb-0">
                     <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
-                    <form action="#" method="get">
+                    <form action="{{ route('actionProductsIndex') }}" method="get">
                         <div class="header-search-wrapper">
-                            <input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..." required="">
-                            <div class="select-custom">
-                                <select id="cat" name="cat">
-                                    <option value="0">All Categories</option>
-                                    <option value="31">- Cars and Trucks</option>
-                                    <option value="32">- Motorcycles &amp; Powersports</option>
-                                    <option value="33">- Parts &amp; Accessories</option>
-                                    <option value="34">- Boats</option>
-                                    <option value="57">- Auto Tools &amp; Supplies</option>
-                                </select>
-                            </div>
+                            <input type="search" class="form-control" name="search_query" id="search_query" placeholder="{{ trans('site.search_text') }}">
                             <button class="btn icon-search-3" type="submit"></button>
                         </div>
                     </form>
                 </div>
-                <a href="wishlist.html" class="header-icon header-icon-wishlist" title="Wishlist"><i class="icon-wishlist-2"></i></a>
                 <div class="dropdown cart-dropdown">
                     <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="minicart-icon"></i>
-                        <span class="cart-count badge-circle">3</span>
+                        <span class="cart-count badge-circle">{{ Cart::getTotalQuantity() }}</span>
                     </a>
                     <div class="cart-overlay"></div>
                     <div class="dropdown-menu mobile-cart">
@@ -125,8 +113,8 @@
                                 <span class="cart-total-price float-right">$134.00</span>
                             </div>
                             <div class="dropdown-cart-action">
-                                <a href="cart.html" class="btn btn-gray btn-block view-cart">{{ trans('site.view_cart') }}</a>
-                                <a href="checkout.html" class="btn btn-dark btn-block">{{ trans('site.checkout') }}</a>
+                                <a href="{{ route('actionCartIndex') }}" class="btn btn-gray btn-block view-cart">{{ trans('site.view_cart') }}</a>
+                                <a href="{{ route('actionCheckoutIndex') }}" class="btn btn-dark btn-block">{{ trans('site.checkout') }}</a>
                             </div>
                         </div>
                     </div>

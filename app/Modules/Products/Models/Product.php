@@ -10,4 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $table = "new_products";
+
+    public function getCategoryData() {
+        return $this->hasOne('App\Modules\Products\Models\ProductCategory', 'id', 'category_id');
+    }
 }

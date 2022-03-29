@@ -8,20 +8,60 @@ use App\Http\Controllers\Controller;
 
 use App\Modules\Main\Models\Main;
 use App\Modules\General\Models\Seo;
+use App\Modules\Products\Models\Product;
+use App\Modules\Products\Models\ProductCategory;
 
 class MainController extends Controller
 {
 
     public function __construct() {
-        //
-
+        
     }
 
     public function actionMainIndex() {
-        $url = 'https://portotheme.com/html/porto_ecommerce/demo31-product.html';
-        $content = file_get_contents($url);
-        echo $content;
-        exit();
+        if (view()->exists('main.main_index')) {
+
+            $Product = new Product();
+            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1)->get()->load('getCategoryData');
+
+            $data = [
+                'seo' => $this->seoList('main'),
+                'product_list' => $ProductList,
+            ];
+
+            return view('main.main_index', $data);
+        } else {
+            abort('404');
+        }
+    }
+
+    public function actionMainAbout() {
+        if (view()->exists('main.main_index')) {
+
+            $data = [
+                'seo' => $this->seoList('main'),
+            ];
+
+            return view('main.main_index', $data);
+        } else {
+            abort('404');
+        }
+    }
+
+    public function actionMainContact() {
+        if (view()->exists('main.main_index')) {
+
+            $data = [
+                'seo' => $this->seoList('main'),
+            ];
+
+            return view('main.main_index', $data);
+        } else {
+            abort('404');
+        }
+    }
+
+    public function actionMainPrivacy() {
         if (view()->exists('main.main_index')) {
 
             $data = [

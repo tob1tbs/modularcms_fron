@@ -15,7 +15,16 @@ class UsersController extends Controller
         //
     }
 
-    public function actionUsersIndex() {
-        //
+    public function actionUsersLogin() {
+        if (view()->exists('users.users_login')) {
+
+            $data = [
+                'seo' => $this->seoList('main'),
+            ];
+
+            return view('users.users_login', $data);
+        } else {
+            abort('404');
+        }
     }
 }
