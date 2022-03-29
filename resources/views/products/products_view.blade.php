@@ -15,16 +15,16 @@
         </nav>
         <div class="product-single-container product-single-default">
             <div class="cart-message d-none">
-                <strong class="single-cart-notice text-white text-uppercase">“Men Black Sports Shoes”</strong>
-                <span class="text-white">has been added to your cart.</span>
+                <strong class="single-cart-notice text-white text-uppercase">{{ $product_data->{"name_".app()->getLocale()} }}</strong>
+                <span class="text-white">{{ trans('site.has_been_added') }}</span>
             </div>
-
             <div class="row">
                 <div class="col-lg-5 col-md-6 product-single-gallery">
                     <div class="product-slider-container">
                         <div class="label-group">
-                            <div class="product-label label-hot">HOT</div>
-                            <div class="product-label label-sale">-16%</div>
+                            @if(!empty($product_data->discount_percent))
+                            <div class="product-label label-sale">{{ $product_data->discount_percent }} %</div>
+                            @endif
                         </div>
                         <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                             <div class="product-item">
@@ -43,7 +43,6 @@
                                 <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-5-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-5-big.jpg" width="468" height="468" alt="product" />
                             </div>
                         </div>
-                        <!-- End .product-single-carousel -->
                         <span class="prod-full-screen">
                             <i class="icon-plus"></i>
                         </span>
@@ -69,34 +68,14 @@
                 </div>
                 <div class="col-lg-7 col-md-6 product-single-details">
                     <h1 class="product-title">{{ $product_data->{"name_".app()->getLocale()} }}</h1>
-                    <div class="product-nav">
-                        <div class="product-prev">
-                            <a href="#">
-                                <span class="product-link"></span>
-                                <span class="product-popup">
-                                    <span class="box-content">
-                                        <img alt="product" width="150" height="150" src="assets/images/demoes/demo31/products/product-3.jpg" style="padding-top: 0px;">
-                                        <span>Epic Future 3</span>
-                                </span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="product-next">
-                            <a href="#">
-                                <span class="product-link"></span>
-                                <span class="product-popup">
-                                    <span class="box-content">
-                                        <img alt="product" width="150" height="150" src="assets/images/demoes/demo31/products/product-4.jpg" style="padding-top: 0px;">
-                                        <span>PEL 2019</span>
-                                </span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
                     <hr class="short-divider">
-                    <div class="price-box">
-                        <span class="product-price">$15.00 &ndash; </span>
-                        <span class="product-price"> $35.00</span>
+                    <div class="price-box product-filtered-price">
+                        @if(!empty($product_data->discount_price))
+                        <del class="old-price"><span>{{ $product_data->getProductPrice->price / 100 }} ₾</span></del>
+                        <span class="product-price">{{ $product_data->discount_price / 100 }} ₾</span>
+                        @else 
+                        <span class="product-price">{{ $product_data->getProductPrice->price / 100 }} ₾</span>
+                        @endif
                     </div>
                     <div class="product-desc">
                         <p>
@@ -222,7 +201,7 @@
             </div>
         </div>
 
-        <div class="products-section pt-0">
+        <!-- <div class="products-section pt-0">
             <h2 class="section-title">{{ trans('site.related_products') }}:</h2>
             <div class="products-slider owl-carousel owl-theme dots-top dots-small 5col" data-owl-options="{'dots': true}">
                 <div class="product-default inner-quickview inner-icon">
@@ -260,7 +239,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <hr class="mt-0 m-b-5" />
     </div>
 </main>
