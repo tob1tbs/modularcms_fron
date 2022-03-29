@@ -21,7 +21,9 @@
                     <h5 class="font-weight-bold pt-3">{{ trans('site.categories') }}</h5>
                     <ul class="nav nav-list flex-column">
                         @foreach($productCategoryList->take(15) as $category_item)
-                        <li class="nav-item"><a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a>
+                        </li>
                         @endforeach
                     </ul>
                 </aside>
@@ -35,7 +37,7 @@
                                 <span class="onsale">Sale!</span>
                             </a>
                             <span class="product-thumb-info border-0">
-                                <a href="shop-cart.html" class="add-to-cart-product bg-color-primary">
+                                <a href="{{ route('actionCartIndex') }}" class="add-to-cart-product bg-color-primary">
                                     <span class="text-uppercase text-1">{{ trans('site.add_to_cart') }}</span>
                                 </a>
                                 <a href="shop-product-sidebar-left.html">

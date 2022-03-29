@@ -24,9 +24,7 @@
                     <div class="product-slider-container">
                         <div class="label-group">
                             <div class="product-label label-hot">HOT</div>
-                            <div class="product-label label-sale">
-                                -16%
-                            </div>
+                            <div class="product-label label-sale">-16%</div>
                         </div>
                         <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                             <div class="product-item">
@@ -70,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6 product-single-details">
-                    <h1 class="product-title">Call of War 2</h1>
+                    <h1 class="product-title">{{ $product_data->{"name_".app()->getLocale()} }}</h1>
                     <div class="product-nav">
                         <div class="product-prev">
                             <a href="#">
@@ -94,13 +92,6 @@
                                 </span>
                             </a>
                         </div>
-                    </div>
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:60%"></span>
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="#" class="rating-link">( 6 Reviews )</a>
                     </div>
                     <hr class="short-divider">
                     <div class="price-box">
@@ -140,13 +131,9 @@
                     </div>
                     <ul class="single-info-list">
                         <li>
-                            SKU:
-                            <strong>R0001</strong>
-                        </li>
-                        <li>
-                            CATEGORIES:
+                            {{ trans('site.category') }}:
                             <strong>
-                                <a href="#" class="product-category">HORROR</a>
+                                <a href="{{ route('actionProductsIndex', $product_data->category_id) }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a>
                             </strong>
                         </li>
                     </ul>
@@ -173,26 +160,25 @@
                     </div>
                     <div class="product-action">
                         <div class="price-box product-filtered-price">
-                            <del class="old-price"><span>$286.00</span></del>
-                            <span class="product-price">$245.00</span>
+                            @if(!empty($product_item->discount_price))
+                            <del class="old-price"><span>{{ $product_item->getProductPrice->price / 100 }} ₾</span></del>
+                            <span class="product-price">{{ $product_item->discount_price / 100 }} ₾</span>
+                            @else 
+                            <span class="product-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                            @endif
                         </div>
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text">
                         </div>
                         <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to Cart</a>
-                        <a href="cart.html" class="btn btn-primary text-white view-cart d-none">View cart</a>
+                        <a href="cart.html" class="btn btn-primary text-white view-cart d-none">{{ trans('site.cart') }}:</a>
                     </div>
                     <hr class="divider mb-0 mt-0">
                     <div class="product-single-share mb-2">
-                        <label class="sr-only">Share:</label>
+                        <label class="sr-only">{{ trans('site.share') }}::</label>
                         <div class="social-icons mr-2">
                             <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
-                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
-                            <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>
-                            <a href="#" class="social-icon social-gplus fab fa-google-plus-g" target="_blank" title="Google +"></a>
-                            <a href="#" class="social-icon social-mail icon-mail-alt" target="_blank" title="Mail"></a>
                         </div>
-                        <a href="wishlist.html" class="btn-icon-wish add-wishlist" title="Add to Wishlist"><i class="icon-wishlist-2"></i><span>Add to Wishlist</span></a>
                     </div>
                 </div>
             </div>
@@ -200,7 +186,7 @@
         <div class="product-single-tabs">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">Description</a>
+                    <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">{{ trans('site.description') }}:</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="product-tab-tags" data-toggle="tab" href="#product-tags-content" role="tab" aria-controls="product-tags-content" aria-selected="false">Additional
@@ -237,7 +223,7 @@
         </div>
 
         <div class="products-section pt-0">
-            <h2 class="section-title">Related Products</h2>
+            <h2 class="section-title">{{ trans('site.related_products') }}:</h2>
             <div class="products-slider owl-carousel owl-theme dots-top dots-small 5col" data-owl-options="{'dots': true}">
                 <div class="product-default inner-quickview inner-icon">
                     <figure>
@@ -249,8 +235,6 @@
                             <a href="#" class="btn-icon btn-add-cart product-type-simple"><i
                                     class="icon-shopping-cart"></i></a>
                         </div>
-                        <a href="ajax/demo31-product-quick-view.html" class="btn-quickview" title="Quick View">Quick
-                            View</a>
                     </figure>
                     <div class="product-details">
                         <div class="category-wrap">
