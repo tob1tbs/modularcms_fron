@@ -37,7 +37,7 @@ class ProductsController extends Controller
         if (view()->exists('products.products_view')) {
 
             $Product = new Product();
-            $ProductData = $Product::where('slug', $Request->slug)->first();
+            $ProductData = $Product::where('id', $Request->id)->first();
 
             $data = [
                 'product_data' => $ProductData,

@@ -15,14 +15,20 @@ class MainController extends Controller
 {
 
     public function __construct() {
-        
+        // $url = 'https://portotheme.com/html/porto_ecommerce/demo31-product.html';
+        // $content = file_get_contents($url);
+        // echo $content;
+        // exit();
     }
 
     public function actionMainIndex() {
         if (view()->exists('main.main_index')) {
 
             $Product = new Product();
-            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1)->get()->load('getCategoryData');
+            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1)
+            ->get()
+            ->load('getCategoryData')
+            ->load('getProductPrice');
 
             $data = [
                 'seo' => $this->seoList('main'),

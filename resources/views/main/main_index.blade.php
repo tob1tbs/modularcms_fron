@@ -60,20 +60,17 @@
                     <i class="icon-shipping"></i>
 
                     <div class="info-box-content">
-                        <h4>FREE SHIPPING &amp; RETURN</h4>
-                        <p class="font2">Free shipping on all orders over $99</p>
+                        <h4>{{ trans('site.box_title_1') }}</h4>
+                        <p class="font2">{{ trans('site.box_text_1') }}</p>
                     </div>
-                    <!-- End .info-box-content -->
                 </div>
-                <!-- End .info-box -->
             </div>
-
             <div class="col-md-4">
                 <div class="info-box info-box-icon-left text-white">
                     <i class="icon-money"></i>
                     <div class="info-box-content">
-                        <h4>MONEY BACK GUARANTEE</h4>
-                        <p class="font2">100% money back guarantee</p>
+                        <h4>{{ trans('site.box_title_2') }}</h4>
+                        <p class="font2">{{ trans('site.box_text_2') }}</p>
                     </div>
                 </div>
             </div>
@@ -82,8 +79,8 @@
                     <i class="icon-support"></i>
 
                     <div class="info-box-content">
-                        <h4>ONLINE SUPPORT 24/7</h4>
-                        <p class="font2">Lorem ipsum dolor sit amet</p>
+                        <h4>{{ trans('site.box_title_3') }}</h4>
+                        <p class="font2">{{ trans('site.box_text_3') }}</p>
                     </div>
                 </div>
             </div>
@@ -136,19 +133,17 @@
                             <div class="product-details">
                                 <div class="category-wrap">
                                     <div class="category-list">
-                                        <a href="demo31-shop.html" class="product-category">{{ json_decode($product_item->getCategoryData->name)->{app()->getLocale()} }}</a>
+                                        <a href="{{ route('actionProductsIndex', $product_item->category_id) }}" class="product-category">{{ json_decode($product_item->getCategoryData->name)->{app()->getLocale()} }}</a>
                                     </div>
                                 </div>
-                                <h3 class="product-title"> <a href="demo31-product.html">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
-                                <div class="ratings-container">
-                                    <div class="product-ratings">
-                                        <span class="ratings" style="width:100%"></span>
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                </div>
+                                <h3 class="product-title"> <a href="{{ route('actionProductsView', $product_item->id) }}">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
                                 <div class="price-box">
-                                    <span class="old-price">$59.00</span>
-                                    <span class="product-price">$49.00</span>
+                                    @if(!empty($product_item->discount_price))
+                                    <span class="old-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    <span class="product-price">{{ $product_item->discount_price / 100 }} ₾</span>
+                                    @else
+                                    <span class="product-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -175,32 +170,25 @@
                             </a>
 
                             <div class="btn-icon-group">
-                                <a href="#" title="Add To Cart" class="btn-icon btn-add-cart product-type-simple"><i
-                                        class="icon-shopping-cart"></i></a>
+                                <a href="#" title="Add To Cart" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
                             </div>
-                            <a href="ajax/demo31-product-quick-view.html" class="btn-quickview" title="Quick View">Quick
-                                View</a>
                         </figure>
                         <div class="product-details">
-                            <div class="category-wrap">
-                                <div class="category-list">
-                                    <a href="demo31-shop.html" class="product-category">category</a>
+                                <div class="category-wrap">
+                                    <div class="category-list">
+                                        <a href="{{ route('actionProductsIndex', $product_item->category_id) }}" class="product-category">{{ json_decode($product_item->getCategoryData->name)->{app()->getLocale()} }}</a>
+                                    </div>
                                 </div>
-                                <a href="wishlist.html" title="Add to Wishlist" class="btn-icon-wish"><i
-                                        class="icon-heart"></i></a>
-                            </div>
-                            <h3 class="product-title"> <a href="demo31-product.html">Eouc Future 3</a> </h3>
-                            <div class="ratings-container">
-                                <div class="product-ratings">
-                                    <span class="ratings" style="width:100%"></span>
-                                    <span class="tooltiptext tooltip-top"></span>
+                                <h3 class="product-title"> <a href="{{ route('actionProductsView', $product_item->id) }}">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
+                                <div class="price-box">
+                                    @if(!empty($product_item->discount_price))
+                                    <span class="old-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    <span class="product-price">{{ $product_item->discount_price / 100 }} ₾</span>
+                                    @else
+                                    <span class="product-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="price-box">
-                                <span class="old-price">$59.00</span>
-                                <span class="product-price">$49.00</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 @endforeach

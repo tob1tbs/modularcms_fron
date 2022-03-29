@@ -14,4 +14,8 @@ class Product extends Model
     public function getCategoryData() {
         return $this->hasOne('App\Modules\Products\Models\ProductCategory', 'id', 'category_id');
     }
+
+    public function getProductPrice() {
+        return $this->belongsTo('App\Modules\Products\Models\ProductPrice', 'id', 'product_id');
+    }
 }
