@@ -160,11 +160,11 @@
                     </div>
                     <div class="product-action">
                         <div class="price-box product-filtered-price">
-                            @if(!empty($product_item->discount_price))
-                            <del class="old-price"><span>{{ $product_item->getProductPrice->price / 100 }} ₾</span></del>
-                            <span class="product-price">{{ $product_item->discount_price / 100 }} ₾</span>
+                            @if(!empty($product_data->discount_price))
+                            <del class="old-price"><span>{{ $product_data->getProductPrice->price / 100 }} ₾</span></del>
+                            <span class="product-price">{{ $product_data->discount_price / 100 }} ₾</span>
                             @else 
-                            <span class="product-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                            <span class="product-price">{{ $product_data->getProductPrice->price / 100 }} ₾</span>
                             @endif
                         </div>
                         <div class="product-single-qty">
