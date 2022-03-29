@@ -19,7 +19,7 @@ class Product extends Model
         return $this->belongsTo('App\Modules\Products\Models\ProductPrice', 'id', 'product_id');
     }
 
-    public function getProductPrice() {
+    public function getProductGallery() {
         return $this->hasMany('App\Modules\Products\Models\ProductGallery', 'id', 'product_id');
     }
 }
