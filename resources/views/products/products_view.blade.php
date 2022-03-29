@@ -28,19 +28,9 @@
                         </div>
                         <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                             <div class="product-item">
-                                <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-1-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-1-big.jpg" width="468" height="468" alt="product" />
-                            </div>
-                            <div class="product-item">
-                                <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-2-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-2-big.jpg" width="468" height="468" alt="product" />
-                            </div>
-                            <div class="product-item">
-                                <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-3-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-3-big.jpg" width="468" height="468" alt="product" />
-                            </div>
-                            <div class="product-item">
-                                <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-4-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-4-big.jpg" width="468" height="468" alt="product" />
-                            </div>
-                            <div class="product-item">
-                                <img class="product-single-image" src="assets/images/demoes/demo31/products/zoom/product-5-big.jpg" data-zoom-image="assets/images/demoes/demo31/products/zoom/product-5-big.jpg" width="468" height="468" alt="product" />
+                                @foreach($product_data->getProductPrice)
+                                <img class="product-single-image" src="{{ $product_data->path }}" data-zoom-image="{{ $product_data->path }}" width="468" height="468" alt="product" />
+                                @endforeach
                             </div>
                         </div>
                         <span class="prod-full-screen">
@@ -49,21 +39,11 @@
                     </div>
 
                     <div class="prod-thumbnail owl-dots">
+                        @foreach($product_data->getProductPrice)
                         <div class="owl-dot">
-                            <img src="assets/images/demoes/demo31/products/zoom/product-1.jpg" width="110" height="110" alt="product-thumbnail" />
+                            <img src="{{ $product_data->path }}" width="110" height="110" alt="product-thumbnail" />
                         </div>
-                        <div class="owl-dot">
-                            <img src="assets/images/demoes/demo31/products/zoom/product-2.jpg" width="110" height="110" alt="product-thumbnail" />
-                        </div>
-                        <div class="owl-dot">
-                            <img src="assets/images/demoes/demo31/products/zoom/product-3.jpg" width="110" height="110" alt="product-thumbnail" />
-                        </div>
-                        <div class="owl-dot">
-                            <img src="assets/images/demoes/demo31/products/zoom/product-4.jpg" width="110" height="110" alt="product-thumbnail" />
-                        </div>
-                        <div class="owl-dot">
-                            <img src="assets/images/demoes/demo31/products/zoom/product-5.jpg" width="110" height="110" alt="product-thumbnail" />
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6 product-single-details">
@@ -116,27 +96,6 @@
                             </strong>
                         </li>
                     </ul>
-                    <div class="product-filters-container">
-                        <div class="product-single-filter filter-with-img">
-                            <label class="font2">Game Type:</label>
-                            <ul class="config-size-list">
-                                <li>
-                                    <a href="javascript:;" class="d-flex align-items-center justify-content-center p-0">
-                                        <img src="assets/images/demoes/demo31/products/zoom/product-1.jpg" width="30" height="30" alt="filter-img" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" class="d-flex align-items-center justify-content-center p-0">
-                                        <img src="assets/images/demoes/demo31/products/zoom/product-2.jpg" width="30" height="30" alt="filter-img" />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-single-filter">
-                            <label></label>
-                            <a class="font2 text-uppercase clear-btn" href="#">Clear</a>
-                        </div>
-                    </div>
                     <div class="product-action">
                         <div class="price-box product-filtered-price">
                             @if(!empty($product_data->discount_price))
@@ -150,7 +109,7 @@
                             <input class="horizontal-quantity form-control" type="text">
                         </div>
                         <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to Cart</a>
-                        <a href="cart.html" class="btn btn-primary text-white view-cart d-none">{{ trans('site.cart') }}:</a>
+                        <a href="{{ route('actionCartIndex') }}" class="btn btn-primary text-white view-cart d-none">{{ trans('site.cart') }}:</a>
                     </div>
                     <hr class="divider mb-0 mt-0">
                     <div class="product-single-share mb-2">
