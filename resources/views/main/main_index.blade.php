@@ -123,7 +123,7 @@
                     <div class="col-6 col-md-3">
                         <div class="product-default inner-quickview inner-icon">
                             <figure>
-                                <a href="demo31-product.html">
+                                <a href="{{ route('actionProductsView', $product_item->id) }}">
                                     <img src="assets/images/demoes/demo31/products/product-1.jpg" width="280" height="392" alt="Product">
                                 </a>
                                 <div class="btn-icon-group">
@@ -165,7 +165,7 @@
                 <div class="grid-item col-6 col-sm-3 col-lg-3 height-xl">
                     <div class="product-default inner-quickview inner-icon">
                         <figure>
-                            <a href="demo31-product.html">
+                            <a href="{{ route('actionProductsView', $product_item->id) }}">
                                 <img src="assets/images/demoes/demo31/products/product-3.jpg" width="180" height="252" alt="Product" />
                             </a>
 
