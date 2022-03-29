@@ -38,8 +38,8 @@
                                     <div class="col-lg-4">
                                         <a href="#" class="nolink">{{ trans('site.categories') }}</a>
                                         <ul class="submenu">
-                                            @foreach($productCategoryList as $category_item)
-                                            <li><a href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ $category_item->name_ge }}</a></li>
+                                            @foreach($productCategoryList->take(10) as $category_item)
+                                            <li><a href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
