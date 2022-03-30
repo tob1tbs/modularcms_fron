@@ -15,10 +15,10 @@ class MainController extends Controller
 {
 
     public function __construct() {
-        // $url = 'https://portotheme.com/html/porto_ecommerce/demo31-product.html';
-        // $content = file_get_contents($url);
-        // echo $content;
-        // exit();
+        $url = 'https://turbopc.ge';
+        $content = file_get_contents($url);
+        echo $content;
+        exit();
     }
 
     public function actionMainIndex() {

@@ -20,7 +20,7 @@ class ProductsController extends Controller
             $Product = new Product();
             $ProductList = $Product::where('deleted_at_int', '!=', 0);
 
-            $ProductList = $ProductList->get();
+            $ProductList = $ProductList->where('active', 1)->get();
 
             $data = [
                 'product_list' => $ProductList,
