@@ -124,7 +124,7 @@
                         <div class="product-default inner-quickview inner-icon">
                             <figure>
                                 <a href="{{ route('actionProductsView', $product_item->id) }}">
-                                    <img src="{{ $product_item->photo }}" width="280" height="392" alt="Product">
+                                    <img src="assets/images/demoes/demo31/products/product-1.jpg" width="280" height="392" alt="Product">
                                 </a>
                                 <div class="btn-icon-group">
                                     <a href="#" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
