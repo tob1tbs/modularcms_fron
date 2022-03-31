@@ -20,7 +20,7 @@
                     </form>
                     <h5 class="font-weight-bold pt-3">{{ trans('site.categories') }}</h5>
                     <ul class="nav nav-list flex-column">
-                        @foreach($productCategoryList->take(15) as $category_item)
+                        @foreach($productCategoryList as $category_item)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a>
                         </li>
