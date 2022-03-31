@@ -33,20 +33,20 @@
                     <div class="row products product-thumb-info-list" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'fitRows'}" style="position: relative; height: 1087.36px;">
                         @foreach($product_list as $product_item)
                         <div class="col-sm-6 col-lg-4 product" style="position: absolute; left: 0px; top: 0px;">
-                            <a href="shop-product-sidebar-left.html">
+                            <a href="javascript:;">
                                 <span class="onsale">Sale!</span>
                             </a>
                             <span class="product-thumb-info border-0">
                                 <a href="{{ route('actionCartIndex') }}" class="add-to-cart-product bg-color-primary">
                                     <span class="text-uppercase text-1">{{ trans('site.add_to_cart') }}</span>
                                 </a>
-                                <a href="shop-product-sidebar-left.html">
+                                <a href="{{ route('actionProductsView', $product_item->id) }}">
                                     <span class="product-thumb-info-image">
                                         <img alt="" class="img-fluid" src="{{ $product_item->photo }}">
                                     </span>
                                 </a>
                                 <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
-                                    <a href="s{{ route('actionProductsView', $product_item->id) }}">
+                                    <a href="{{ route('actionProductsView', $product_item->id) }}">
                                         <h4 class="text-4 text-primary">{{ $product_item->{"name_".app()->getLocale()} }}</h4>
                                         <span class="price">
                                             @if(!empty($product_item->discount_price))
