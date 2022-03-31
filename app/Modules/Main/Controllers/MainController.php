@@ -15,10 +15,7 @@ class MainController extends Controller
 {
 
     public function __construct() {
-        $url = 'https://turbopc.ge';
-        $content = file_get_contents($url);
-        echo $content;
-        exit();
+        
     }
 
     public function actionMainIndex() {
