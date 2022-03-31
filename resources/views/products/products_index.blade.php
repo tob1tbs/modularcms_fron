@@ -42,7 +42,7 @@
                                 </a>
                                 <a href="shop-product-sidebar-left.html">
                                     <span class="product-thumb-info-image">
-                                        <img alt="" class="img-fluid" src="img/products/product-grey-1.jpg">
+                                        <img alt="" class="img-fluid" src="{{ $product_item->photo }}">
                                     </span>
                                 </a>
                                 <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
