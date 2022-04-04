@@ -1,7 +1,8 @@
 @extends('layout.layout')
 
 @section('css')
-
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/owl.theme.default') }}">
 @endsection
 
 @section('content')
@@ -10,19 +11,19 @@
         <section>
             <div class="row grid">
                 <div class="col-md-8 grid-item height-x1">
-                    <div class="home-banner">
-                        <figure>
-                            <img src="assets/images/demoes/demo31/banners/home_banner1.jpg" width="780" height="440" alt="Home Banner" />
-                        </figure>
-                        <div class="banner-content content-right-bottom">
-                            <span class="span-box span-primary appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="200">50% off</span>
-                            <h3 class=" appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="400">portogear 2</h3>
-                            <div class="price-box appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="600">
-                                <span class="old-price">$59</span>
-                                <span class="product-price">$29</span>
+                    <div class="owl-carousel owl-theme">
+                        @foreach($slider_list as $item)
+                        <div class="home-banner">
+                            <figure>
+                                <img src="{{ $item->path }}" width="780" height="440" alt="Home Banner" />
+                            </figure>
+                            <div class="banner-content content-right-bottom">
+                                <span class="span-box span-primary appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="200">{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}</span>
+                                <h3 class=" appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="400">{{ json_decode($item->text)->{'big_text_'.app()->getLocale()} }}</h3>
+                                <a href="{{ $item->url }}" class="btn appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="800">shop now</a>
                             </div>
-                            <a href="demo31-shop.html" class="btn appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="800">shop now</a>
                         </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 grid-item height-x2">
@@ -200,5 +201,23 @@
 @endsection
 
 @section('js')
-
+<script src="{{ asset('assets/js/owl.carousel.js') }}"></script>
+<script type="text/javascript">
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
+            }
+        }
+    })
+</script>
 @endsection

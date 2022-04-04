@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 use App\Modules\Main\Models\Main;
 use App\Modules\General\Models\Seo;
+use App\Modules\General\Models\Slider;
 use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\ProductCategory;
 
@@ -28,9 +29,13 @@ class MainController extends Controller
             ->load('getCategoryData')
             ->load('getProductPrice');
 
+            $Slider = new Slider();
+            $SliderList = $Slider::where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+
             $data = [
                 'seo' => $this->seoList('main'),
                 'product_list' => $ProductList,
+                'slider_list' => $SliderList,
             ];
 
             return view('main.main_index', $data);
