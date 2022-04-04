@@ -20,18 +20,15 @@ class ProductsController extends Controller
         if (view()->exists('products.products_index')) {
 
             $Product = new Product();
-            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1)
-
+            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
             if($Request->isMethod('GET')) {
-
                 if($Request->has('category') && $Request->category > 1) {
-                    
                     $ProductList->where('category_id', $Request->category);
-                    
                     $ProductCategory = new ProductCategory();
-                    $ChildCategoryList = $ProductCategory::where('category_id', $Request->category)->where('deleted_at_int', !=, 0)->where('active', 1)->get(); 
+                    $ChildCategoryList = $ProductCategory::where('category_id', $Request->category)->where('deleted_at_int', '!=', 0)->where('active', 1)->get(); 
                 } else {
                     $ChildProductCategoryList = [];
+                    $ChildCategoryList = [];
                 }
 
                 if($Request->has('child_category') && $Request->child_category > 0) {

@@ -63,29 +63,13 @@
                             placerat eleifend leo.
                         </p>
                     </div>
-                    <div class="product-info-box">
-                        <div class="product-info-date">
-                            <span class="product-info-name">Release date:</span>
-                            <span class="product-info">2018-05-15</span>
-                        </div>
-                    </div>
-                    <ul class="single-info-list">
+                    <ul class="single-info-list font-neue">
                         <li>
-                            {{ trans('site.category') }}:
-                            <strong>
-                                <a href="{{ route('actionProductsIndex', $product_data->category_id) }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a>
-                            </strong>
+                            {{ trans('site.category') }} : <strong>
+                             <a href="{{ route('actionProductsIndex', $product_data->category_id) }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></strong>
                         </li>
                     </ul>
                     <div class="product-action">
-                        <div class="price-box product-filtered-price">
-                            @if(!empty($product_data->discount_price))
-                            <del class="old-price"><span>{{ $product_data->getProductPrice->price / 100 }} ₾</span></del>
-                            <span class="product-price">{{ $product_data->discount_price / 100 }} ₾</span>
-                            @else 
-                            <span class="product-price">{{ $product_data->getProductPrice->price / 100 }} ₾</span>
-                            @endif
-                        </div>
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text">
                         </div>

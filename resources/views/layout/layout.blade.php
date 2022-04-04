@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/demo31.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+
+    @yield('css')
 </head>
 <body>
     <div class="page-wrapper">
@@ -126,5 +128,6 @@
     <script src="{{ asset('assets/js/optional/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.appear.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @yield('js')
 </body>
 </html>

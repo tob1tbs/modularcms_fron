@@ -1,8 +1,8 @@
 @extends('layout.layout')
 
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/owl.carousel.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/owl.theme.default') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.theme.default.css') }}">
 @endsection
 
 @section('content')

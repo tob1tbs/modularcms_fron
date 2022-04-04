@@ -1,7 +1,8 @@
 @extends('layout.layout')
 
 @section('css')
-
+<!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme-elements.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme-shop.default') }}"> -->
 @endsection
 
 @section('content')
@@ -18,10 +19,10 @@
                             </span>
                         </div>
                     </form>
-                    <h5 class="font-weight-bold pt-3">{{ trans('site.categories') }}</h5>
+                    <h5 class="font-weight-bold pt-3 font-neue">{{ trans('site.categories') }}</h5>
                     <ul class="nav nav-list flex-column">
                         @foreach($productCategoryList as $category_item)
-                        <li class="nav-item">
+                        <li class="nav-item font-helvetica-regular">
                             <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a>
                         </li>
                         @endforeach
@@ -29,38 +30,7 @@
                 </aside>
             </div>
             <div class="col-lg-9">
-                <div class="masonry-loader masonry-loader-loaded">
-                    <div class="row products product-thumb-info-list" data-plugin-masonry="" data-plugin-options="{'layoutMode': 'fitRows'}" style="position: relative; height: 1087.36px;">
-                        @foreach($product_list as $product_item)
-                        <div class="col-sm-6 col-lg-4 product" style="position: absolute; left: 0px; top: 0px;">
-                            <a href="javascript:;">
-                                <span class="onsale">Sale!</span>
-                            </a>
-                            <span class="product-thumb-info border-0">
-                                <a href="{{ route('actionCartIndex') }}" class="add-to-cart-product bg-color-primary">
-                                    <span class="text-uppercase text-1">{{ trans('site.add_to_cart') }}</span>
-                                </a>
-                                <a href="{{ route('actionProductsView', $product_item->id) }}">
-                                    <span class="product-thumb-info-image">
-                                        <img alt="" class="img-fluid" src="{{ $product_item->photo }}">
-                                    </span>
-                                </a>
-                                <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
-                                    <a href="{{ route('actionProductsView', $product_item->id) }}">
-                                        <h4 class="text-4 text-primary">{{ $product_item->{"name_".app()->getLocale()} }}</h4>
-                                        <span class="price">
-                                            @if(!empty($product_item->discount_price))
-                                            <del><span class="amount">{{ $product_item->getProductPrice->price / 100 }} ₾</span></del>
-                                            <ins><span class="amount text-dark font-weight-semibold">{{ $product_item->discount_price / 100 }} ₾</span></ins>
-                                            @else
-                                            <del><span class="amount">{{ $product_item->getProductPrice->price / 100 }} ₾</span></del>
-                                            @endif
-                                        </span>
-                                    </a>
-                                </span>
-                            </span>
-                        </div>
-                        @endforeach
+                    <div class="row">
                     </div>
                     <div class="row">
                         <div class="col">
