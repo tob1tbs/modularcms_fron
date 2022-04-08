@@ -34,7 +34,7 @@ class ComposerViewProvider extends ServiceProvider
         //
         View::composer('*', function($view) {
             $ProductCategory = new ProductCategory();
-            $ProductCategoryList = $ProductCategory::where('parent_id', 0)->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+            $ProductCategoryList = $ProductCategory::where('parent_id', 0)->where('deleted_at_int', '!=', 0)->where('id', '!=', 1)->where('active', 1)->get();
             $view->with('productCategoryList', $ProductCategoryList);
 
             $Parameter = new Parameter();

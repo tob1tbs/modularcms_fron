@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\ProductCategory;
+use App\Modules\Products\Models\ProductOption;
+use App\Modules\Products\Models\ProductOptionValue;
 
 class ProductsController extends Controller
 {
@@ -18,17 +20,28 @@ class ProductsController extends Controller
 
     public function actionProductsIndex(Request $Request) {
         if (view()->exists('products.products_index')) {
-
             $Product = new Product();
             $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
+
             if($Request->isMethod('GET')) {
-                if($Request->has('category') && $Request->category > 1) {
-                    $ProductList->where('category_id', $Request->category);
+                if($Request->has('category_id') && $Request->category_id > 1) {
+                    // PRODUCT
+                    $ProductList = $ProductList->where('category_id', $Request->category_id);
+                    
+                    // CHILD CATEGORY
                     $ProductCategory = new ProductCategory();
-                    $ChildCategoryList = $ProductCategory::where('category_id', $Request->category)->where('deleted_at_int', '!=', 0)->where('active', 1)->get(); 
+                    $ChildCategoryList = $ProductCategory::where('parent_id', $Request->category_id)->where('deleted_at_int', '!=', 0)->where('active', 1)->get(); 
+
+                    // PRODUCT OPTIONS
+                    $ProductOption = new ProductOption();
+                    $ProductOptionList = $ProductOption::where('deleted_at_int', '!=', 0)->where('category_id', $Request->category_id)->get();
+
+                    $ProductOptionValue = new ProductOptionValue();
+                    $ProductOptionValueList = $ProductOptionValue::where('deleted_at_int', '!=', 0)->where('active', 1)->get();
                 } else {
-                    $ChildProductCategoryList = [];
                     $ChildCategoryList = [];
+                    $ProductOptionList = [];
+                    $ProductOptionValueList = [];
                 }
 
                 if($Request->has('child_category') && $Request->child_category > 0) {
@@ -41,6 +54,8 @@ class ProductsController extends Controller
             $data = [
                 'product_list' => $ProductList,
                 'child_category_list' => $ChildCategoryList,
+                'option_list' => $ProductOptionList,
+                'option_value_list' => $ProductOptionValueList,
                 'seo' => $this->seoList('products'),
             ];
 

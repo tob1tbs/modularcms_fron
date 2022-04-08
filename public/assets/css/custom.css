@@ -37,3 +37,8 @@
 .font-helvetica-regular {
 	font-family: 'HelveticaRegular';
 }
+
+.category-box > li > a {
+    color: #ffffff;
+    padding-left: 0;
+}
