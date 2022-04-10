@@ -4,14 +4,14 @@
             <div class="header-right header-dropdowns ml-0 ml-sm-auto w-sm-100">
                 <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
                     @if(app()->getLocale() == 'ge') 
-                    <a href="javascript:;"><i class="flag-us flag"></i>GE</a>
+                    <a href="javascript:;"><i class="flag-ge flag"></i>GE</a>
                     @else
                     <a href="javascript:;"><i class="flag-us flag"></i>EN</a>
                     @endif
                     <div class="header-menu">
                         <ul>
-                            <li><a href="{{ LaravelLocalization::getLocalizedURL('ge') }}"><i class="flag-us flag mr-2"></i>GE</a></li>
-                            <li><a href="{{ LaravelLocalization::getLocalizedURL('en') }}"><i class="flag-fr flag mr-2"></i>EN</a></li>
+                            <li><a href="{{ LaravelLocalization::getLocalizedURL('ge') }}"><i class="flag-ge flag mr-2"></i>GE</a></li>
+                            <li><a href="{{ LaravelLocalization::getLocalizedURL('en') }}"><i class="flag-us flag mr-2"></i>EN</a></li>
                         </ul>
                     </div>
                 </div>
@@ -24,8 +24,8 @@
                 <button class="mobile-menu-toggler" type="button">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a href="demo31.html" class="logo">
-                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="">
+                <a href="{{ route('actionMainIndex') }}" class="logo">
+                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="turbo pc" title="{{ $seo['title'] }}">
                 </a>
             </div>
             <div class="header-center">

@@ -10,33 +10,38 @@
         <div class="row mt-5">
             <div class="col-lg-3">
                 <aside class="sidebar">
-                    <div>
-                        <h5 class="font-weight-bold font-neue">{{ trans('site.categories') }}</h5>
-                        <ul class="nav nav-list flex-column category-box">
-                            @foreach($productCategoryList as $category_item)
-                            <li class="nav-item font-helvetica-regular">
-                                <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="mt-5">
-                        <h5 class="font-weight-bold font-neue">{{ trans('site.filters') }}</h5>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label style="color: #fff" class="font-neue" for="price_from">ფასი: (დან)</label>
-                                    <input type="number" name="price_from" id="price_from" class="form-control" style="border-radius: 5px; color: #ffffff;">
+                    <form>
+                        <div>
+                            <h5 class="font-weight-bold font-neue">{{ trans('site.categories') }}</h5>
+                            <ul class="nav nav-list flex-column category-box">
+                                @foreach($productCategoryList as $category_item)
+                                <li class="nav-item font-helvetica-regular">
+                                    <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="mt-5">
+                            <h5 class="font-weight-bold font-neue">{{ trans('site.filters') }}</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label style="color: #fff" class="font-neue" for="price_from">ფასი: (დან)</label>
+                                        <input type="number" name="price_from" id="price_from" class="form-control" style="border-radius: 5px; color: #ffffff;">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label style="color: #fff" class="font-neue" for="price_to">ფასი: (მდე)</label>
-                                    <input type="number" name="price_to" id="price_to" class="form-control" style="border-radius: 5px; color: #ffffff;">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label style="color: #fff" class="font-neue" for="price_to">ფასი: (მდე)</label>
+                                        <input type="number" name="price_to" id="price_to" class="form-control" style="border-radius: 5px; color: #ffffff;">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-sm btn-success" style="border-radius: 5px; color: #ffffff;">{{ trans('site.filtered') }}</h5></button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </aside>
             </div>
             <div class="col-lg-9">
@@ -71,18 +76,6 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
-                    <div class="row">
-                        <div class="col">
-                            <ul class="pagination float-right">
-                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

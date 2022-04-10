@@ -45,26 +45,26 @@ class MainController extends Controller
     }
 
     public function actionMainAbout() {
-        if (view()->exists('main.main_index')) {
+        if (view()->exists('main.main_about')) {
 
             $data = [
                 'seo' => $this->seoList('main'),
             ];
 
-            return view('main.main_index', $data);
+            return view('main.main_about', $data);
         } else {
             abort('404');
         }
     }
 
     public function actionMainContact() {
-        if (view()->exists('main.main_index')) {
+        if (view()->exists('main.main_contact')) {
 
             $data = [
                 'seo' => $this->seoList('main'),
             ];
 
-            return view('main.main_index', $data);
+            return view('main.main_contact', $data);
         } else {
             abort('404');
         }

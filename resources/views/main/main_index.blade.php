@@ -16,12 +16,12 @@
                         @foreach($slider_list as $item)
                         <div class="home-banner">
                             <figure>
-                                <img src="{{ $item->path }}" width="780" height="440" alt="Home Banner" />
+                                <img src="{{ $item->path }}" width="780" height="440" alt="{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}" title="{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}" />
                             </figure>
                             <div class="banner-content content-right-bottom">
                                 <span class="span-box span-primary appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="200">{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}</span>
                                 <h3 class=" appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="400">{{ json_decode($item->text)->{'big_text_'.app()->getLocale()} }}</h3>
-                                <a href="{{ $item->url }}" class="btn appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="800">shop now</a>
+                                <a href="{{ $item->url }}" class="btn appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="800">{{ trans('site.more') }}</a>
                             </div>
                         </div>
                         @endforeach
@@ -62,27 +62,27 @@
                     <i class="icon-shipping"></i>
 
                     <div class="info-box-content">
-                        <h4>{{ trans('site.box_title_1') }}</h4>
-                        <p class="font2">{{ trans('site.box_text_1') }}</p>
+                        <h4 class="font-neue">{{ trans('site.box_title_1') }}</h4>
+                        <p class="font2 font-helvetica-regular">{{ trans('site.box_text_1') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="info-box info-box-icon-left text-white">
-                    <i class="icon-money"></i>
+                    <i class="icon-phone"></i>
                     <div class="info-box-content">
-                        <h4>{{ trans('site.box_title_2') }}</h4>
-                        <p class="font2">{{ trans('site.box_text_2') }}</p>
+                        <h4 class="font-neue">{{ trans('site.phone_number') }}</h4>
+                        <p class="font2 font-helvetica-regular">{{ $parametersArray['phone'] }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="info-box info-box-icon-left text-white">
-                    <i class="icon-support"></i>
+                    <i class="icon-mail"></i>
 
                     <div class="info-box-content">
-                        <h4>{{ trans('site.box_title_3') }}</h4>
-                        <p class="font2">{{ trans('site.box_text_3') }}</p>
+                        <h4 class="font-neue">{{ trans('site.email') }}</h4>
+                        <p class="font2 font-helvetica-regular">{{ $parametersArray['email'] }}</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
             <section class="product-panel">
                 <div class="section-title">
                     <h2 class="mr-5 ls-0 mb-0">{{ trans('site.future_products') }}</h2>
-                    <a href="{{ route('actionProductsIndex') }}">{{ trans('site.all_products') }}<i class="icon-right"></i></a>
+                    <a href="{{ route('actionProductsIndex') }}" class="font-helvetica-regular">{{ trans('site.all_products') }}<i class="icon-right"></i></a>
                 </div>
                 <div class="row">
                     @foreach($product_list->take(4) as $product_item)
