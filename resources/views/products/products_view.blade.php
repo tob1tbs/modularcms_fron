@@ -7,13 +7,7 @@
 @section('content')
 <main class="main">
     <div class="container">
-        <nav aria-label="breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="demo31.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Products</a></li>
-            </ol>
-        </nav>
-        <div class="product-single-container product-single-default">
+        <div class="product-single-container product-single-default mt-5">
             <div class="cart-message d-none">
                 <strong class="single-cart-notice text-white text-uppercase">{{ $product_data->{"name_".app()->getLocale()} }}</strong>
                 <span class="text-white">{{ trans('site.has_been_added') }}</span>
@@ -37,7 +31,6 @@
                             <i class="icon-plus"></i>
                         </span>
                     </div>
-
                     <div class="prod-thumbnail owl-dots">
                         @foreach($product_data->getProductGallery as $gallery_item)
                         <div class="owl-dot">
@@ -72,7 +65,7 @@
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text">
                         </div>
-                        <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="{{ trans('site.add_to_cart') }}">{{ trans('site.add_to_cart') }}</a>
+                        <a href="javascript:;" class="btn btn-dark add-cart mr-2 font-neue" title="{{ trans('site.add_to_cart') }}">{{ trans('site.add_to_cart') }}</a>
                         <a href="{{ route('actionCartIndex') }}" class="btn btn-primary text-white view-cart d-none">{{ trans('site.cart') }}:</a>
                     </div>
                     <hr class="divider mb-0 mt-0">
@@ -88,62 +81,65 @@
         <div class="product-single-tabs">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">{{ trans('site.parameters') }}:</a>
+                    <a class="nav-link active font-neue" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">{{ trans('site.parameters') }}:</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="product-tags-content" role="tabpanel" aria-labelledby="product-tab-tags">
                     <table class="table table-striped mt-2">
                         <tbody>
+                            @foreach($option_array as $option_item)
                             <tr>
-                                <th style="color: #ffffff;">Game Type</th>
-                                <td style="color: #ffffff;">Offline, Online</td>
+                                <th style="color: #ffffff;" class="font-helvetica-regular">{{ json_decode($option_item['name'])->{app()->getLocale()} }}</th>
+                                <td style="color: #ffffff;" class="font-helvetica-regular">{{ $option_item['value']->{app()->getLocale()} }}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <div class="container">
+            <section class="product-panel appear-animate" data-animation-name="fadeIn" data-animation-delay="100">
+                <div class="section-title">
+                    <h2 class="mr-5 ls-0 mb-0 font-neue mt-2">{{ trans('site.related_products') }}</h2>
+                </div>
+                <div class="row grid">
+                    @foreach($related_product->take(4) as $product_item)
+                    <div class="grid-item col-6 col-sm-3 col-lg-3 height-xl">
+                        <div class="product-default inner-quickview inner-icon">
+                            <figure>
+                                <a href="{{ route('actionProductsView', $product_item->id) }}">
+                                    <img src="{{ $product_item->photo }}" width="180" height="252" alt="Product" />
+                                </a>
 
-        <!-- <div class="products-section pt-0">
-            <h2 class="section-title">{{ trans('site.related_products') }}:</h2>
-            <div class="products-slider owl-carousel owl-theme dots-top dots-small 5col" data-owl-options="{'dots': true}">
-                <div class="product-default inner-quickview inner-icon">
-                    <figure>
-                        <a href="demo31-product.html">
-                            <img src="assets/images/demoes/demo31/products/product-12.jpg" width="220" height="308" alt="Product" />
-                        </a>
-
-                        <div class="btn-icon-group">
-                            <a href="#" class="btn-icon btn-add-cart product-type-simple"><i
-                                    class="icon-shopping-cart"></i></a>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <div class="category-wrap">
-                            <div class="category-list">
-                                <a href="demo31-shop.html" class="product-category">category</a>
+                                <div class="btn-icon-group">
+                                    <a href="#" title="Add To Cart" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
+                                </div>
+                            </figure>
+                            <div class="product-details">
+                                <div class="category-wrap">
+                                    <div class="category-list">
+                                        <a href="{{ route('actionProductsIndex', $product_item->category_id) }}" class="product-category font-helvetica-regular">{{ json_decode($product_item->getCategoryData->name)->{app()->getLocale()} }}</a>
+                                    </div>
+                                </div>
+                                <h3 class="product-title font-neue"> <a href="{{ route('actionProductsView', $product_item->id) }}">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
+                                <div class="price-box">
+                                    @if(!empty($product_item->discount_price))
+                                    <span class="old-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    <span class="product-price">{{ $product_item->discount_price / 100 }} ₾</span>
+                                    @else
+                                    <span class="product-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    @endif
+                                </div>
                             </div>
-                            <a href="wishlist.html" title="Wishlist" class="btn-icon-wish"><i
-                                    class="icon-heart"></i></a>
-                        </div>
-                        <h3 class="product-title">
-                            <a href="demo31-product.html">Gun Machine 6</a>
-                        </h3>
-                        <div class="ratings-container">
-                            <div class="product-ratings">
-                                <span class="ratings" style="width:100%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                        <div class="price-box">
-                            <span class="old-price">$59.00</span>
-                            <span class="product-price">$49.00</span>
                         </div>
                     </div>
+                    @endforeach
+                    <div class="col-1 grid-col-sizer"></div>
                 </div>
-            </div>
-        </div> -->
+            </section>
+        </div>
         <hr class="mt-0 m-b-5" />
     </div>
 </main>

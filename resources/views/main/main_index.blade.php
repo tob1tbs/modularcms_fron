@@ -121,7 +121,7 @@
                     <a href="{{ route('actionProductsIndex') }}" class="font-helvetica-regular">{{ trans('site.all_products') }}<i class="icon-right"></i></a>
                 </div>
                 <div class="row">
-                    @foreach($product_list->take(4) as $product_item)
+                    @foreach($product_list->where('status', 2)->take(4) as $product_item)
                     <div class="col-6 col-md-3">
                         <div class="product-default inner-quickview inner-icon">
                             <figure>

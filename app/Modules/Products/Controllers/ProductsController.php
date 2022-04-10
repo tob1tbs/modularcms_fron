@@ -10,6 +10,8 @@ use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\ProductCategory;
 use App\Modules\Products\Models\ProductOption;
 use App\Modules\Products\Models\ProductOptionValue;
+use App\Modules\Products\Models\ProductOptionItem;
+use App\Modules\Products\Models\ProductMeta;
 use App\Modules\Products\Models\ProductBrand;
 
 class ProductsController extends Controller
@@ -99,9 +101,39 @@ class ProductsController extends Controller
             $Product = new Product();
             $ProductData = $Product::where('id', $Request->id)->first();
 
+            $ProductOption = new ProductOption();
+            $ProductOptionList = $ProductOption::where('category_id', $ProductData->category_id)->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+
+            $OptionArray = [];
+
+            foreach($ProductOptionList as $OptionItem) {
+                $OptionArray[$OptionItem->id] = [
+                    'name' => $OptionItem->name,
+                    'value' => [],
+                ];
+
+                $ProductOptionItem = new ProductOptionItem();
+                $ProductOptionItemData = $ProductOptionItem::where('key', $OptionItem->key)->where('product_id', $ProductData->id)->where('deleted_at_int', '!=', 0)->first();
+
+                $OptionArray[$OptionItem->id]['value'] = json_decode($ProductOptionItemData->getOptionValue->name);
+            }
+
+            $RelatedProduct = $Product::where('category_id', $ProductData->category_id)->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+
+            $ProductMeta = new ProductMeta();
+            $ProductMetaData = $ProductMeta::where('product_id', $ProductData->id)->first();
+
+            $SeoItem = [
+                'title' => $ProductData->toArray()['name_'.app()->getLocale()],
+                'description' => json_decode($ProductMetaData->toArray()['description'])->{app()->getLocale()},
+                'keywords' => json_decode($ProductMetaData->toArray()['keywords'])->{app()->getLocale()},
+            ];
+
             $data = [
                 'product_data' => $ProductData,
-                'seo' => $this->seoList('products'),
+                'option_array' => $OptionArray,
+                'related_product' => $RelatedProduct,
+                'seo' => $SeoItem,
             ];
 
             return view('products.products_view', $data);

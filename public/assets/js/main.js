@@ -2346,8 +2346,6 @@
 
 		ProductSingle.prototype.variationMatch = function () {
 			var self = this;
-			self.$priceWrap.find( 'span' ).text( '$' + ( Math.round( Math.random() * 50 ) + 170 ) + '.00' );
-			self.$priceWrap.find( 'del span' ).text( '$' + ( Math.round( Math.random() * 50 ) + 200 ) + '.00' );
 			self.$priceWrap.slideDown();
 			self.$clean.slideDown();
 			self.$btnCart.removeClass( 'disabled' );
