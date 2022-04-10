@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="menu-deal"><a href="{{ route('actionConstructorIndex') }}"><i class="icon-wrench icons mr-3"></i></i>{{ trans('site.build_your_pc') }}</a></li>
+                        <!-- <li class="menu-deal"><a href="{{ route('actionConstructorIndex') }}"><i class="icon-wrench icons mr-3"></i></i>{{ trans('site.build_your_pc') }}</a></li> -->
                     </ul>
                 </nav>
             </div>
