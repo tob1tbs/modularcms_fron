@@ -96,8 +96,8 @@
                     <table class="table table-striped mt-2">
                         <tbody>
                             <tr>
-                                <th>Game Type</th>
-                                <td>Offline, Online</td>
+                                <th style="color: #ffffff;">Game Type</th>
+                                <td style="color: #ffffff;">Offline, Online</td>
                             </tr>
                         </tbody>
                     </table>
