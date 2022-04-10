@@ -1,7 +1,7 @@
 <?php
 
 // GENERAL ROUTES
-Route::group(['prefix' => 'constructors', 'middleware' => []], function () {
+Route::group(['prefix' => 'constructor', 'middleware' => []], function () {
     Route::get('/', 'ConstructorController@actionConstructorIndex')->name('actionConstructorIndex');
 });
 

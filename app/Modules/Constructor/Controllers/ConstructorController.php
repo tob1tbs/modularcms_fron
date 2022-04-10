@@ -17,5 +17,6 @@ class ConstructorController extends Controller
 
     public function actionConstructorIndex() {
         //
+        abort(404);
     }
 }
