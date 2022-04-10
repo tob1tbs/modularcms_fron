@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-@dd($product_data)
 <main class="main">
     <div class="container">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
