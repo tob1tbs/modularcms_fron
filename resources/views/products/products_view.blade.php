@@ -59,7 +59,7 @@
                     </div>
                     <div class="product-desc">
                         <p>
-                            {{ json_decode($product_data->description)->{app()->getLocale()} }}
+                            {!! json_decode($product_data->description)->{app()->getLocale()} !!}
                         </p>
                     </div>
                     <ul class="single-info-list font-neue">
