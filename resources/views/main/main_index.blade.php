@@ -1,8 +1,9 @@
 @extends('layout.layout')
 
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.theme.default.css') }}">
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.theme.default.css') }}">
 @endsection
 
 @section('content')
@@ -158,7 +159,7 @@
     <div class="container">
         <section class="product-panel bar-bottom appear-animate" data-animation-name="fadeIn" data-animation-delay="100">
             <div class="section-title">
-                <h2 class="mr-5 ls-0 mb-0">{{ trans('site.resently_added') }}</h2>
+                <h2 class="mr-5 ls-0 mb-0 font-neue mt-2">{{ trans('site.resently_added') }}</h2>
                 <a href="{{ route('actionProductsIndex') }}">{{ trans('site.all_products') }}<i class="icon-right"></i></a>
             </div>
             <div class="row grid">
@@ -177,10 +178,10 @@
                         <div class="product-details">
                                 <div class="category-wrap">
                                     <div class="category-list">
-                                        <a href="{{ route('actionProductsIndex', $product_item->category_id) }}" class="product-category">{{ json_decode($product_item->getCategoryData->name)->{app()->getLocale()} }}</a>
+                                        <a href="{{ route('actionProductsIndex', $product_item->category_id) }}" class="product-category font-helvetica-regular">{{ json_decode($product_item->getCategoryData->name)->{app()->getLocale()} }}</a>
                                     </div>
                                 </div>
-                                <h3 class="product-title"> <a href="{{ route('actionProductsView', $product_item->id) }}">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
+                                <h3 class="product-title font-neue"> <a href="{{ route('actionProductsView', $product_item->id) }}">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
                                 <div class="price-box">
                                     @if(!empty($product_item->discount_price))
                                     <span class="old-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>

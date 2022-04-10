@@ -17,7 +17,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 
+    <meta property="og:title" content="{{ $seo['title'] }}" />
+    <meta property="og:description" content="{{ $seo['description'] }}" >
+    <meta property="og:locale" content="{{ app()->getLocale() }}" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:image" content="{{ asset('assets/images/cover.png') }}" />
+
     @yield('css')
+    
 </head>
 <body>
     <div class="page-wrapper">
