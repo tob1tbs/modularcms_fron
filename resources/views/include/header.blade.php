@@ -32,7 +32,7 @@
                 <nav class="main-nav">
                     <ul class="menu font-neue">
                         <li class="active">
-                            <a href="javascript:;"><i class="icon-bars mr-3"></i>{{ trans('site.categories') }}</a>
+                            <a href="{{ route('actionProductsIndex') }}"><i class="icon-bars mr-3"></i>{{ trans('site.categories') }}</a>
                             <div class="megamenu megamenu-fixed-width">
                                 <div class="row">
                                     <div class="col-lg-4">
@@ -42,19 +42,6 @@
                                             <li><a href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a></li>
                                             @endforeach
                                         </ul>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <a href="javascript:;" class="nolink">&nbsp;</a>
-                                        <ul class="submenu">
-                                            
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-4 p-0">
-                                        <div class="menu-banner menu-banner-2">
-                                            <figure>
-                                                <img src="{{ asset('assets/images/menu-banner-1.jpg') }}" alt="Menu banner" class="product-promo" width="380" height="790">
-                                            </figure>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
