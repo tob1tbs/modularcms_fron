@@ -10,14 +10,21 @@
         <div class="row mt-5">
             <div class="col-lg-3">
                 <aside class="sidebar">
-                    <form>
+                    <form method="get">
                         <div>
-                            <h5 class="font-weight-bold font-neue">{{ trans('site.categories') }}</h5>
+                            <h5 class="font-weight-bold font-neue mb-0">{{ trans('site.categories') }}</h5>
                             <ul class="nav nav-list flex-column category-box">
-                                @foreach($productCategoryList as $category_item)
+                                @foreach($category_list as $category_item)
                                 <li class="nav-item font-helvetica-regular">
-                                    <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item->id.'') }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</a>
+                                    <a class="nav-link" href="{{ route('actionProductsIndex', 'category_id='.$category_item['id'].'') }}">{{ $category_item['name']->{app()->getLocale()} }}</a>
                                 </li>
+                                @if($category_item['id'] == request()->category_id)
+                                    @foreach($category_item['child'] as $child_category_item)
+                                    <li class="nav-item font-helvetica-regular">
+                                        <a class="nav-link" href="{{ route('actionProductsIndex', 'child_category_id='.$child_category_item['id'].'') }}">-- {{ $child_category_item['name']->{app()->getLocale()} }}</a>
+                                    </li>
+                                    @endforeach
+                                @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -36,6 +43,32 @@
                                         <input type="number" name="price_to" id="price_to" class="form-control" style="border-radius: 5px; color: #ffffff;">
                                     </div>
                                 </div>
+                                @foreach($option_list as $option_item)
+                                <div class="mb-4">
+                                    <h5 class="font-weight-bold font-neue mb-0">{{ $option_item['name']->{app()->getLocale()} }}</h5>
+                                    <ul class="nav nav-list flex-column category-box">
+                                    @if($option_item['category_id'] == request()->category_id)
+                                        @foreach($option_item['values'] as $option_value_item)
+                                        <li class="nav-item font-helvetica-regular">
+                                            <a class="nav-link" href="{{ route('actionProductsIndex', 'option_id='.$option_value_item['id'].'') }}">-- {{ $option_value_item['name']->{app()->getLocale()} }}</a>
+                                        </li>
+                                        @endforeach
+                                    @endif
+                                    </ul>
+                                </div>
+                                @endforeach
+                                @if(!empty($brand_list))
+                                <div class="mb-4">
+                                    <h5 class="font-weight-bold font-neue mb-0">{{ trans('site.brands') }}</h5>
+                                    <ul class="nav nav-list flex-column category-box">
+                                        @foreach($brand_list as $brand_item)
+                                        <li class="nav-item font-helvetica-regular">
+                                            <a class="nav-link" href="{{ route('actionProductsIndex', 'brand_id='.$brand_item['id'].'') }}">-- {{ json_decode($brand_item['name'])->{app()->getLocale()} }}</a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 <div class="col-12">
                                     <button class="btn btn-sm btn-success" style="border-radius: 5px; color: #ffffff;">{{ trans('site.filtered') }}</h5></button>
                                 </div>
@@ -77,7 +110,7 @@
                     </div>
                     @endforeach
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 </div>

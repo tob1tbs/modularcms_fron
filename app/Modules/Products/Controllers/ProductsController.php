@@ -10,6 +10,7 @@ use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\ProductCategory;
 use App\Modules\Products\Models\ProductOption;
 use App\Modules\Products\Models\ProductOptionValue;
+use App\Modules\Products\Models\ProductBrand;
 
 class ProductsController extends Controller
 {
@@ -20,42 +21,69 @@ class ProductsController extends Controller
 
     public function actionProductsIndex(Request $Request) {
         if (view()->exists('products.products_index')) {
+            
+            $ProductCategory = new ProductCategory();
+            $ProductCategoryList = $ProductCategory::where('deleted_at_int', '!=', 0)->where('parent_id', 0)->where('id', '>', 1)->where('active', 1)->get();
+
+            $ProductBrand = new ProductBrand();
+            $ProductBrandList = $ProductBrand::where('deleted_at_int', '!=', 0)->where('category_id', $Request->category_id)->where('id', '>', 1)->where('active', 1)->get()->toArray();
+
             $Product = new Product();
             $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
 
-            if($Request->isMethod('GET')) {
-                if($Request->has('category_id') && $Request->category_id > 1) {
-                    // PRODUCT
-                    $ProductList = $ProductList->where('category_id', $Request->category_id);
-                    
-                    // CHILD CATEGORY
-                    $ProductCategory = new ProductCategory();
-                    $ChildCategoryList = $ProductCategory::where('parent_id', $Request->category_id)->where('deleted_at_int', '!=', 0)->where('active', 1)->get(); 
+            $CategoryArray = [];
+            $OptionArray = [];
 
-                    // PRODUCT OPTIONS
-                    $ProductOption = new ProductOption();
-                    $ProductOptionList = $ProductOption::where('deleted_at_int', '!=', 0)->where('category_id', $Request->category_id)->get();
+            foreach($ProductCategoryList->toArray() as $ProductCategoryItem) {
+                $CategoryArray[$ProductCategoryItem['id']] = [
+                    'id' => $ProductCategoryItem['id'],
+                    'name' => json_decode($ProductCategoryItem['name']),
+                    'child' => [],
+                ];
 
-                    $ProductOptionValue = new ProductOptionValue();
-                    $ProductOptionValueList = $ProductOptionValue::where('deleted_at_int', '!=', 0)->where('active', 1)->get();
-                } else {
-                    $ChildCategoryList = [];
-                    $ProductOptionList = [];
-                    $ProductOptionValueList = [];
-                }
+                $ProductCategoryChild = $ProductCategory::where('parent_id', $ProductCategoryItem['id'])->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
 
-                if($Request->has('child_category') && $Request->child_category > 0) {
-                    $ProductList->where('child_category_id', $Request->child_category);
+                foreach($ProductCategoryChild->toArray() as $ProductCategoryChildItem) {
+                    if($ProductCategoryChildItem['parent_id'] == $ProductCategoryItem['id']) {
+                        $CategoryArray[$ProductCategoryItem['id']]['child'][] = [
+                            'id' => $ProductCategoryChildItem['id'],
+                            'name' => json_decode($ProductCategoryChildItem['name']),
+                        ];
+                    }
                 }
             }
 
-            $ProductList = $ProductList->orderBy('id', 'DESC')->get();
+            $ProductOption = new ProductOption();
+            $ProductOptionList = $ProductOption::where('category_id', $Request->category_id)->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+
+            foreach($ProductOptionList->toArray() as $ProductOptionItem) {
+                $OptionArray[$ProductOptionItem['id']] = [
+                    'id' => $ProductOptionItem['id'],
+                    'name' => json_decode($ProductOptionItem['name']),
+                    'category_id' => $Request->category_id,
+                    'values' => [], 
+                ];
+
+                $ProductOptionValue = new ProductOptionValue();
+                $ProductOptionValueList = $ProductOptionValue::where('option_id', $ProductOptionItem['id'])->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+
+                foreach($ProductOptionValueList->toArray() as $ProductOptionValueItem) {
+                    if($ProductOptionValueItem['option_id'] == $ProductOptionItem['id']) {
+                        $OptionArray[$ProductOptionItem['id']]['values'][] = [
+                            'id' => $ProductOptionValueItem['id'],
+                            'name' => json_decode($ProductOptionValueItem['name']),
+                        ];
+                    }
+                }
+            }
+
+            $ProductList = $ProductList->orderBy('id', 'DESC')->paginate(12)->appends(request()->query());;
 
             $data = [
+                'option_list' => $OptionArray,
+                'category_list' => $CategoryArray,
+                'brand_list' => $ProductBrandList,
                 'product_list' => $ProductList,
-                'child_category_list' => $ChildCategoryList,
-                'option_list' => $ProductOptionList,
-                'option_value_list' => $ProductOptionValueList,
                 'seo' => $this->seoList('products'),
             ];
 
