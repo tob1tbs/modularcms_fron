@@ -17,12 +17,22 @@ class Controller extends BaseController
         $Seo = new Seo();
         $SeoData = $Seo::where('name', $page_key)->first();
 
-        $SeoItem = [
-            'title' => json_decode($SeoData->value)->title_ge,
-            'description' => json_decode($SeoData->value)->description_ge,
-            'keywords' => json_decode($SeoData->value)->keywords_ge,
-        ];
-
+        switch (app()->getLocale()) {
+            case 'ge':
+            $SeoItem = [
+                'title' => json_decode($SeoData->value)->title_ge,
+                'description' => json_decode($SeoData->value)->description_ge,
+                'keywords' => json_decode($SeoData->value)->keywords_ge,
+            ];
+            break;
+            case 'en':
+            $SeoItem = [
+                'title' => json_decode($SeoData->value)->title_en,
+                'description' => json_decode($SeoData->value)->description_en,
+                'keywords' => json_decode($SeoData->value)->keywords_en,
+            ];
+            break;
+        }
         return $SeoItem;
     }
 }
