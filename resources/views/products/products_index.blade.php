@@ -21,7 +21,7 @@
                                 @if($category_item['id'] == request()->category_id)
                                     @foreach($category_item['child'] as $child_category_item)
                                     <li class="nav-item font-helvetica-regular">
-                                        <a class="nav-link" href="{{ route('actionProductsIndex', 'child_category_id='.$child_category_item['id'].'') }}">-- {{ $child_category_item['name']->{app()->getLocale()} }}</a>
+                                        <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['child_category_id' => $child_category_item['id']])) }}" >-- {{ $child_category_item['name']->{app()->getLocale()} }}</a>
                                     </li>
                                     @endforeach
                                 @endif
@@ -50,7 +50,7 @@
                                     @if($option_item['category_id'] == request()->category_id)
                                         @foreach($option_item['values'] as $option_value_item)
                                         <li class="nav-item font-helvetica-regular">
-                                            <a class="nav-link" href="{{ route('actionProductsIndex', 'option_id='.$option_value_item['id'].'') }}">-- {{ $option_value_item['name']->{app()->getLocale()} }}</a>
+                                            <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['option_id' => $option_value_item['id']])) }}">-- {{ $option_value_item['name']->{app()->getLocale()} }}</a>
                                         </li>
                                         @endforeach
                                     @endif
@@ -63,7 +63,7 @@
                                     <ul class="nav nav-list flex-column category-box">
                                         @foreach($brand_list as $brand_item)
                                         <li class="nav-item font-helvetica-regular">
-                                            <a class="nav-link" href="{{ route('actionProductsIndex', 'brand_id='.$brand_item['id'].'') }}">-- {{ json_decode($brand_item['name'])->{app()->getLocale()} }}</a>
+                                            <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['brand_id' => $brand_item['id']])) }}">-- {{ json_decode($brand_item['name'])->{app()->getLocale()} }}</a>
                                         </li>
                                         @endforeach
                                     </ul>

@@ -16,43 +16,31 @@
                         @foreach($slider_list as $item)
                         <div class="home-banner">
                             <figure>
-                                <img src="{{ $item->path }}" width="780" height="440" alt="{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}" title="{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}" />
+                                <img src="{{ $item->path }}" width="780" height="440" style="max-height: 440px;" alt="{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}" title="{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}" />
                             </figure>
                             <div class="banner-content content-right-bottom">
-                                <span class="span-box span-primary appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="200">{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}</span>
-                                <h3 class=" appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="400">{{ json_decode($item->text)->{'big_text_'.app()->getLocale()} }}</h3>
+                                <span class="span-box span-primary appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="200">{{ json_decode($item->text)->{'small_text_'.app()->getLocale()} }}</span>
+                                <h3 class=" appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="400">{{ json_decode($item->text)->{'big_text_'.app()->getLocale()} }}</h3>
                                 <a href="{{ $item->url }}" class="btn appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="800">{{ trans('site.more') }}</a>
                             </div>
                         </div>
                         @endforeach
                     </div>
                 </div>
+                @foreach($banner_list as $banner_item)
                 <div class="col-sm-6 col-md-4 grid-item height-x2">
                     <div class="home-banner">
                         <figure>
-                            <img src="assets/images/demoes/demo31/banners/home_banner2.jpg" width="380" height="210" alt="Home Banner" />
+                            <img src="{{ $banner_item->path }}" width="380" height="210" style="max-height: 210px;" alt="{{ json_decode($banner_item->text)->{'small_text_'.app()->getLocale()} }}" title="{{ json_decode($banner_item->text)->{'small_text_'.app()->getLocale()} }}">
                         </figure>
                         <div class="banner-content content-right-bottom">
-                            <span class="font1 appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="1000">flash sales on</span>
-                            <h3 class=" appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="1200">consoles</h3>
-                            <a href="demo31-shop.html" class="btn appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="1400">shop now</a>
+                            <span class="font1 appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="1000">{{ json_decode($banner_item->text)->{'small_text_'.app()->getLocale()} }}</span>
+                            <h3 class=" appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="1200">{{ json_decode($banner_item->text)->{'big_text_'.app()->getLocale()} }}</h3>
+                            <a href="{{ $banner_item->url }}" class="btn appear-animate font-neue" data-animation-name="fadeInUpShorter" data-animation-delay="1400">{{ trans('site.more') }}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-4 grid-item height-x2">
-                    <div class="home-banner">
-                        <figure>
-                            <img src="assets/images/demoes/demo31/banners/home_banner3.jpg" width="380" height="210" alt="Home Banner" />
-                        </figure>
-                        <div class="banner-content content-stretch">
-                            <span class="font1 appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="1500">check new wireless</span>
-                            <h3 class=" appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="1700">controllers</h3>
-                            <h4 class="sale-off text-white font1 appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="1900"><span class="span-box span-secondary ls-0">50%</span>off
-                            </h4>
-                            <a href="demo31-shop.html" class="btn appear-animate" data-animation-name="fadeInUpShorter" data-animation-delay="2100">shop now</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <div class="col-1 grid-col-sizer"></div>
             </div>
         </section>
@@ -117,7 +105,7 @@
         <div class="container">
             <section class="product-panel">
                 <div class="section-title">
-                    <h2 class="mr-5 ls-0 mb-0">{{ trans('site.future_products') }}</h2>
+                    <h2 class="mr-5 ls-0 mb-0 font-neue">{{ trans('site.future_products') }}</h2>
                     <a href="{{ route('actionProductsIndex') }}" class="font-helvetica-regular">{{ trans('site.all_products') }}<i class="icon-right"></i></a>
                 </div>
                 <div class="row">

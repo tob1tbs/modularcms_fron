@@ -28,10 +28,17 @@ class ProductsController extends Controller
             $ProductCategoryList = $ProductCategory::where('deleted_at_int', '!=', 0)->where('parent_id', 0)->where('id', '>', 1)->where('active', 1)->get();
 
             $ProductBrand = new ProductBrand();
-            $ProductBrandList = $ProductBrand::where('deleted_at_int', '!=', 0)->where('category_id', $Request->category_id)->where('id', '>', 1)->where('active', 1)->get()->toArray();
+            $ProductBrandList = $ProductBrand::where('deleted_at_int', '!=', 0)->where('id', '>', 1)->where('active', 1);
 
-            $Product = new Product();
-            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
+            if($Request->has('category_id') && !empty($Request->category_id)) {
+                $ProductBrandList = $ProductBrandList->where('category_id', $Request->category_id);
+            }
+
+            if($Request->has('child_category_id') && !empty($Request->child_category_id)) {
+                $ProductBrandList = $ProductBrandList->where('child_category_id', $Request->child_category_id);
+            }
+
+            $ProductBrandList = $ProductBrandList->get()->toArray();
 
             $CategoryArray = [];
             $OptionArray = [];
@@ -56,7 +63,17 @@ class ProductsController extends Controller
             }
 
             $ProductOption = new ProductOption();
-            $ProductOptionList = $ProductOption::where('category_id', $Request->category_id)->where('deleted_at_int', '!=', 0)->where('active', 1)->get();
+            $ProductOptionList = $ProductOption::where('deleted_at_int', '!=', 0)->where('active', 1);
+
+            if($Request->has('category_id') && !empty($Request->category_id)) {
+                $ProductOptionList = $ProductOptionList->where('category_id', $Request->category_id);
+            }
+
+            if($Request->has('child_category_id') && !empty($Request->child_category_id)) {
+                $ProductOptionList = $ProductOptionList->where('child_category_id', $Request->child_category_id);
+            }
+
+            $ProductOptionList = $ProductOptionList->get();
 
             foreach($ProductOptionList->toArray() as $ProductOptionItem) {
                 $OptionArray[$ProductOptionItem['id']] = [
@@ -79,7 +96,23 @@ class ProductsController extends Controller
                 }
             }
 
-            $ProductList = $ProductList->orderBy('id', 'DESC')->paginate(12)->appends(request()->query());;
+
+            $Product = new Product();
+            $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
+
+            if($Request->has('category_id') && !empty($Request->category_id)) {
+                $ProductList = $ProductList->where('category_id', $Request->category_id);
+            }
+
+            if($Request->has('child_category_id') && !empty($Request->child_category_id)) {
+                $ProductList = $ProductList->where('child_category_id', $Request->child_category_id);
+            }
+
+            if($Request->has('brand_id') && !empty($Request->brand_id)) {
+                $ProductBrandList = $ProductBrandList->where('brand_id', $Request->brand_id);
+            }
+
+            $ProductList = $ProductList->orderBy('id', 'DESC')->paginate(12)->appends(request()->query());
 
             $data = [
                 'option_list' => $OptionArray,

@@ -20,6 +20,6 @@ class Product extends Model
     }
 
     public function getProductGallery() {
-        return $this->hasMany('App\Modules\Products\Models\ProductGallery', 'id', 'product_id');
+        return $this->hasMany('App\Modules\Products\Models\ProductGallery', 'product_id', 'id');
     }
 }

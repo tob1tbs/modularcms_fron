@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="footer-top">
         <div class="container">
-            <div class="footer-left nav-links font-helvetica-regular">
+            <div class="footer-left nav-links font-neue">
                 <a href="{{ route('actionMainContact') }}">{{ trans('site.contact') }}</a>
                 <a href="{{ route('actionMainPrivacy') }}">{{ trans('site.privacy') }}</a>
                 <a href="{{ route('actionMainAbout') }}">{{ trans('site.about_us') }}</a>

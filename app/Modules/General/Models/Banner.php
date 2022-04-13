@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\Products\Models;
+namespace App\Modules\General\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductGallery extends Model
+class Banner extends Model
 {
     use HasFactory;
 
-    protected $table = "new_product_gallery";
+    protected $table = "new_banners";
 }
