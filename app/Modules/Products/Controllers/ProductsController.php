@@ -112,6 +112,10 @@ class ProductsController extends Controller
                 $ProductBrandList = $ProductBrandList->where('brand_id', $Request->brand_id);
             }
 
+            if($Request->has('option_id') && !empty($Request->option_id)) {
+                $ProductBrandList = $ProductBrandList;
+            }
+
             $ProductList = $ProductList->orderBy('id', 'DESC')->paginate(12)->appends(request()->query());
 
             $data = [

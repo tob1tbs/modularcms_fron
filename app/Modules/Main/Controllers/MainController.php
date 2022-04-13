@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Modules\Main\Models\Main;
 use App\Modules\General\Models\Seo;
 use App\Modules\General\Models\Slider;
-use App\Modules\General\Models\Banner;
 use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\ProductCategory;
 
@@ -31,10 +30,9 @@ class MainController extends Controller
             ->load('getProductPrice');
 
             $Slider = new Slider();
-            $SliderList = $Slider::where('deleted_at_int', '!=', 0)->where('active', 1)->orderBy('id', 'DESC')->get();
+            $SliderList = $Slider::where('deleted_at_int', '!=', 0)->whereNull('is_banner')->where('active', 1)->orderBy('id', 'DESC')->get();
 
-            $Banner = new Banner();
-            $BannerList = $Banner::where('deleted_at_int', '!=', 0)->where('active', 1)->orderBy('id', 'DESC')->limit(2)->get();
+            $BannerList = $Slider::where('deleted_at_int', '!=', 0)->where('is_banner', 1)->where('active', 1)->orderBy('id', 'DESC')->limit(2)->get();
 
             $data = [
                 'seo' => $this->seoList('main'),
