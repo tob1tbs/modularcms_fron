@@ -117,7 +117,15 @@
                                     <img src="{{ $product_item->photo }}" width="280" height="392" alt="Product">
                                 </a>
                                 <div class="btn-icon-group">
-                                    <a href="#" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
+                                    <a href="javascript:;" onclick="AddToCart({{ $product_item->id }})" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
+                                </div>
+                                <div class="label-group">
+                                    @if($product_item->used == 1)
+                                    <div class="product-label label-hot">{{ trans('site.used') }}</div>
+                                    @endif
+                                    @if(!empty($product_item->discount_percent))
+                                    <div class="product-label label-sale">{{ $product_item->discount_percent }} %</div>
+                                    @endif
                                 </div>
                             </figure>
                             <div class="product-details">
@@ -162,6 +170,14 @@
                             <div class="btn-icon-group">
                                 <a href="#" title="Add To Cart" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
                             </div>
+                            <div class="label-group">
+                                @if($product_item->used == 1)
+                                <div class="product-label label-hot">{{ trans('site.used') }}</div>
+                                @endif
+                                @if(!empty($product_item->discount_percent))
+                                <div class="product-label label-sale">{{ $product_item->discount_percent }} %</div>
+                                @endif
+                            </div>
                         </figure>
                         <div class="product-details">
                                 <div class="category-wrap">
@@ -190,6 +206,7 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('assets/js/scripts/global.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.js') }}"></script>
 <script type="text/javascript">
     $('.owl-carousel').owlCarousel({

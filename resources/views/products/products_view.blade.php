@@ -16,6 +16,9 @@
                 <div class="col-lg-5 col-md-6 product-single-gallery">
                     <div class="product-slider-container">
                         <div class="label-group">
+                            @if($product_data->used == 1)
+                            <div class="product-label label-hot">{{ trans('site.used') }}</div>
+                            @endif
                             @if(!empty($product_data->discount_percent))
                             <div class="product-label label-sale">{{ $product_data->discount_percent }} %</div>
                             @endif
@@ -121,6 +124,14 @@
 
                                 <div class="btn-icon-group">
                                     <a href="#" title="Add To Cart" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
+                                </div>
+                                <div class="label-group">
+                                    @if($product_item->used == 1)
+                                    <div class="product-label label-hot">{{ trans('site.used') }}</div>
+                                    @endif
+                                    @if(!empty($product_item->discount_percent))
+                                    <div class="product-label label-sale">{{ $product_item->discount_percent }} %</div>
+                                    @endif
                                 </div>
                             </figure>
                             <div class="product-details">
