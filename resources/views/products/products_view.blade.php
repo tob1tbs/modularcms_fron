@@ -53,7 +53,7 @@
                     <hr class="short-divider">
                     <div class="price-box product-filtered-price">
                         @if(!empty($product_data->discount_price))
-                        <del class="old-price"><span>{{ $product_data->getProductPrice->price / 100 }} ₾</span></del>
+                        <del class="old-price"><span>{{ $product_item->getProductPrice['0']->price / 100 }} ₾</span></del>
                         <span class="product-price">{{ $product_data->discount_price / 100 }} ₾</span>
                         @else 
                         <span class="product-price">{{ $product_data->getProductPrice->price / 100 }} ₾</span>
