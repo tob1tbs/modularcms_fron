@@ -53,10 +53,10 @@
                     <hr class="short-divider">
                     <div class="price-box product-filtered-price">
                         @if(!empty($product_data->discount_price))
-                        <del class="old-price"><span>{{ $product_item->getProductPrice['0']->price / 100 }} ₾</span></del>
+                        <del class="old-price"><span>{{ $product_data->getProductPrice['0']->price / 100 }} ₾</span></del>
                         <span class="product-price">{{ $product_data->discount_price / 100 }} ₾</span>
                         @else 
-                        <span class="product-price">{{ $product_data->getProductPrice->price / 100 }} ₾</span>
+                        <span class="product-price">{{ $product_data->getProductPrice['0']->price / 100 }} ₾</span>
                         @endif
                     </div>
                     <div class="product-desc">
@@ -143,10 +143,10 @@
                                 <h3 class="product-title font-neue"> <a href="{{ route('actionProductsView', $product_item->id) }}">{{ $product_item->{"name_".app()->getLocale()} }}</a></h3>
                                 <div class="price-box">
                                     @if(!empty($product_item->discount_price))
-                                    <span class="old-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    <span class="old-price">{{ $product_item->getProductPrice['0']->price / 100 }} ₾</span>
                                     <span class="product-price">{{ $product_item->discount_price / 100 }} ₾</span>
                                     @else
-                                    <span class="product-price">{{ $product_item->getProductPrice->price / 100 }} ₾</span>
+                                    <span class="product-price">{{ $product_item->getProductPrice['0']->price / 100 }} ₾</span>
                                     @endif
                                 </div>
                             </div>

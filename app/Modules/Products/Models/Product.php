@@ -16,7 +16,7 @@ class Product extends Model
     }
 
     public function getProductPrice() {
-        return $this->hasMany('App\Modules\Products\Models\ProductPrice', 'id', 'product_id');
+        return $this->hasMany('App\Modules\Products\Models\ProductPrice', 'product_id', 'id')->orderBy('id', 'DESC');
     }
 
     public function getProductGallery() {
