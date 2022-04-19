@@ -68,6 +68,7 @@
                         <li>
                             {{ trans('site.category') }} : <strong>
                              <a href="{{ route('actionProductsIndex', $product_data->category_id) }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></strong>
+                             <a href="{{ route('actionProductsIndex', 'category_id='.$product_data->category_id.'') }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></strong>
                         </li>
                     </ul>
                     <div class="product-action">
