@@ -9,6 +9,7 @@
 
     <meta name="keywords" content="{{ $seo['keywords'] }}">
     <meta name="description" content="{{ $seo['description'] }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/icons/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/demo31.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+
 
     <meta property="og:title" content="{{ $seo['title'] }}" />
     <meta property="og:description" content="{{ $seo['description'] }}" >

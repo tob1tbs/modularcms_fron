@@ -8,7 +8,7 @@
 <main class="main">
     <div class="page-header" style="background-color: #424548;">
         <div class="container d-flex flex-column align-items-center">
-            <h1 style="color: #ffffff;">{{ trans('site.login') }}</h1>
+            <h1 style="color: #ffffff;" class="font-neue">{{ trans('site.login') }}</h1>
         </div>
     </div>
     <div class="container">
@@ -19,25 +19,23 @@
                         <div class="col-md-12">
                             <div class="featured-box featured-box-primary text-left mt-2">
                                 <div class="box-content">
-                                    <form action="/" id="frmSignIn" method="post">
+                                    <form action="/" id="user_login">
                                         <div class="form-row">
                                             <div class="form-group col">
-                                                <a class="float-right" href="#">{{ trans('site.register') }}</a>
-                                                <label class="font-weight-bold text-dark text-2">{{ trans('site.email') }}</label>
-                                                <input type="text" value="" class="form-control form-control-lg">
+                                                <label class="font-weight-bold text-2 float-left font-neue" style="color: #ffffff;">{{ trans('site.user_email') }}</label>
+                                                <a class="float-right font-helvetica-regular" style="color: #ffffff; float: right;" href="{{ route('actionUsersRegistration') }}">{{ trans('site.register') }}</a>
+                                                <input type="text" class="form-control form-control-lg" autocomplete="off" name="user_email">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col">
-                                                <a class="float-right" href="#">{{ trans('site.forget_password') }}</a>
-                                                <label class="font-weight-bold text-dark text-2">{{ trans('site.password') }}</label>
-                                                <input type="password" value="" class="form-control form-control-lg">
+                                                <label class="font-weight-bold text-2 float-left font-neue" style="color: #ffffff;">{{ trans('site.password') }}</label>
+                                                <a class="float-right font-helvetica-regular" style="color: #ffffff; float: right;" href="{{ route('actionUsersRestore') }}">{{ trans('site.forget_password') }}</a>
+                                                <input type="password" class="form-control form-control-lg" autocomplete="off" name="user_password">
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                           <div class="form-group col-lg-6">
-                                                <input type="submit" value="Login" class="btn btn-primary float-right" data-loading-text="Loading...">
-                                            </div>
+                                            <input type="button" value="{{ trans('site.login') }}" class="font-neue btn btn-primary float-right" onclick="UserLogin()">
                                         </div>
                                     </form>
                                 </div>
@@ -52,5 +50,5 @@
 @endsection
 
 @section('js')
-
+<script src="{{ asset('assets/js/scripts/users_scripts.js') }}"></script>
 @endsection
