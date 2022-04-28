@@ -10,5 +10,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['we
 
 // AJAX ROUTES
 Route::group(['prefix' => 'checkout/ajax', 'middleware' => []], function () {
-    Route::get('/submit', 'CheckoutAjaxController@ajaxCheckoutSubmit')->name('ajaxCheckoutSubmit');
+    Route::post('/submit', 'CheckoutAjaxController@ajaxCheckoutSubmit')->name('ajaxCheckoutSubmit');
 });

@@ -19,18 +19,10 @@ class CheckoutAjaxController extends Controller
         //
     }
 
-    public function checkoutSubmit() {
+    public function ajaxCheckoutSubmit(Request $Request) {
         if($Request->isMethod('POST')) {
 
-            if($Request->payment_type = 'bog_payment') {
-                $BogPaymentController = new BogPaymentController();
-            }
-
-            if($Request->payment_type = 'bog_installment') {
-                $BogInstallmentController = new BogInstallmentController();
-                $BogInstallmentController->getOrder();
-            }
-
+            
         } else {
             return Response::json(['status' => false]);
         }

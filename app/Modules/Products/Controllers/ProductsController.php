@@ -96,7 +96,6 @@ class ProductsController extends Controller
                 }
             }
 
-
             $Product = new Product();
             $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
 
