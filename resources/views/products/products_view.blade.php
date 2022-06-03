@@ -68,7 +68,6 @@
                         <li>
                             {{ trans('site.category') }} : <strong>
                              <a href="{{ route('actionProductsIndex', $product_data->category_id) }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></strong>
-                             <a href="{{ route('actionProductsIndex', 'category_id='.$product_data->category_id.'') }}" class="product-category">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></strong>
                         </li>
                     </ul>
                     <div class="product-action">
@@ -119,12 +118,11 @@
                     <div class="grid-item col-6 col-sm-3 col-lg-3 height-xl">
                         <div class="product-default inner-quickview inner-icon">
                             <figure>
-                                <a href="{{ route('actionProductsView', $product_item->id) }}">
-                                    <img src="{{ $product_item->photo }}" width="180" height="252" alt="Product" />
+                                <a href="{{ route('actionProductsView', $product_item->id) }}" style="height: 230px;">
+                                    <img src="{{ $product_item->photo }}" style="width: 100%; height: 100%;" alt="Product">
                                 </a>
-
                                 <div class="btn-icon-group">
-                                    <a href="#" title="Add To Cart" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
+                                    <a href="javascript:;" onclick="AddToCart({{ $product_item->id }})" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
                                 </div>
                                 <div class="label-group">
                                     @if($product_item->used == 1)

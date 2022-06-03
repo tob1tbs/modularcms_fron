@@ -99,6 +99,10 @@ class ProductsController extends Controller
             $Product = new Product();
             $ProductList = $Product::where('deleted_at_int', '!=', 0)->where('active', 1);
 
+            if($Request->has('search_query') && !empty($Request->search_query)) {
+                $ProductList = $ProductList->where('name_ge', 'like',  '%'.$Request->search_query.'%')->where('name_en', 'like',  '%'.$Request->search_query.'%');
+            }
+
             if($Request->has('category_id') && !empty($Request->category_id)) {
                 $ProductList = $ProductList->where('category_id', $Request->category_id);
             }
@@ -112,7 +116,7 @@ class ProductsController extends Controller
             }
 
             if($Request->has('option_id') && !empty($Request->option_id)) {
-                $ProductBrandList = $ProductBrandList;
+                $ProductBrandList = $ProductBrandList->whereRelation('optionValue', 'value', $Request->option_id);
             }
 
             $ProductList = $ProductList->orderBy('id', 'DESC')->paginate(12)->appends(request()->query());

@@ -21,7 +21,7 @@
                                 @if($category_item['id'] == request()->category_id)
                                     @foreach($category_item['child'] as $child_category_item)
                                     <li class="nav-item font-helvetica-regular">
-                                        <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['child_category_id' => $child_category_item['id']])) }}" >-- {{ $child_category_item['name']->{app()->getLocale()} }}</a>
+                                        <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->except('page'),['child_category_id' => $child_category_item['id']])) }}" >-- {{ $child_category_item['name']->{app()->getLocale()} }}</a>
                                     </li>
                                     @endforeach
                                 @endif
@@ -50,7 +50,7 @@
                                     @if($option_item['category_id'] == request()->category_id)
                                         @foreach($option_item['values'] as $option_value_item)
                                         <li class="nav-item font-helvetica-regular">
-                                            <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['option_id' => $option_value_item['id']])) }}">-- {{ $option_value_item['name']->{app()->getLocale()} }}</a>
+                                            <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->except('page'),['option_id' => $option_value_item['id']])) }}">-- {{ $option_value_item['name']->{app()->getLocale()} }}</a>
                                         </li>
                                         @endforeach
                                     @endif
@@ -63,7 +63,7 @@
                                     <ul class="nav nav-list flex-column category-box">
                                         @foreach($brand_list as $brand_item)
                                         <li class="nav-item font-helvetica-regular">
-                                            <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['brand_id' => $brand_item['id']])) }}">-- {{ json_decode($brand_item['name'])->{app()->getLocale()} }}</a>
+                                            <a class="nav-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->except('page'),['brand_id' => $brand_item['id']])) }}">-- {{ json_decode($brand_item['name'])->{app()->getLocale()} }}</a>
                                         </li>
                                         @endforeach
                                     </ul>
@@ -84,7 +84,7 @@
                         <div class="product-default inner-quickview inner-icon">
                             <figure>
                                 <a href="{{ route('actionProductsView', $product_item->id) }}" style="height: 230px;">
-                                    <img src="{{ $product_item->photo }}" style="width: 100%; height: 100%;" alt="Product">
+                                    <img src="{{ $product_item->photo }}" style="width: 100%; height: auto;" alt="Product">
                                 </a>
                                 <div class="btn-icon-group">
                                     <a href="javascript:;" onclick="AddToCart({{ $product_item->id }})" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>

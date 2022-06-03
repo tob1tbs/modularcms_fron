@@ -38,8 +38,8 @@
 			imageLink: '#',
 			name: '',
 			nameLink: '#', // 'product.html',
-			content: 'has been added to your cart.',
-			action: '<a href="cart.html" class="btn viewcart">View Cart</a><a href="checkout.html" class="btn btn-dark checkout">Checkout</a>',
+			content: '<span class="font-helvetica-regular">დაემატა კალათაში</span>',
+			action: '<a href="/checkout/cart" class="btn viewcart font-helvetica-regular">კალათის ნახვა</a><a href="/checkout" class="btn btn-dark checkout font-neue">ყიდვა</a>',
 			// option
 			delay: 4000, // milliseconds
 			space: 20,

@@ -12,5 +12,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['we
 
 // AJAX ROUTES
 Route::group(['prefix' => 'main/ajax', 'middleware' => []], function () {
-    
+    Route::post('/cart/add', 'MainAjaxController@ajaxGeneralAddToCart')->name('ajaxGeneralAddToCart');
+    Route::post('/cart/remove', 'MainAjaxController@ajaxGeneralRemoveFromCart')->name('ajaxGeneralRemoveFromCart');
+    Route::post('/cart/quanitity', 'MainAjaxController@ajaxGeneralQuantityCart')->name('ajaxGeneralQuantityCart');
+    Route::post('/cart/clear', 'MainAjaxController@ajaxGeneralClearCart')->name('ajaxGeneralClearCart');
 });

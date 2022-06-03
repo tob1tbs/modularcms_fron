@@ -71,33 +71,33 @@
                         <a href="#" class="btn-close">×</a>
                         <div class="dropdownmenu-wrapper custom-scrollbar">
                             <div class="dropdown-cart-header">{{ trans('site.my_cart') }}</div>
-                            @if(count(Cart::getContent()) > 0)
-                                @foreach(Cart::getContent() as $cart_item)
+                                @if(count(Cart::getContent()) > 0)
                                 <div class="dropdown-cart-products">
+                                    @foreach(Cart::getContent() as $cart_item)
                                     <div class="product">
                                         <div class="product-details">
                                             <h4 class="product-title">
-                                                <a href="demo31-product.html">Ultimate 3D Bluetooth Speaker</a>
+                                                <a href="{{ route('actionProductsView', $cart_item->id) }}">{{ $cart_item->name }}</a>
                                             </h4>
                                             <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span> × $99.00
+                                                <span class="cart-product-qty">{{ $cart_item->quantity }}</span> × {{ number_format($cart_item->price, 2) }}
                                             </span>
                                         </div>
                                         <figure class="product-image-container">
-                                            <a href="demo31-product.html" class="product-image">
-                                                <img src="assets/images/demoes/demo31/products/small/product-1.jpg" alt="product" width="80" height="80">
+                                            <a href="{{ route('actionProductsView', $cart_item->id) }}" class="product-image">
+                                                <img src="{{ $cart_item->attributes->photo }}" alt="product" width="80" height="80">
                                             </a>
                                             <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
                                         </figure>
                                     </div>
-                                </div>
-                                @endforeach
-                            @else
-                            {{ trans('site.your_cart_is_empty') }}
-                            @endif
+                                    @endforeach
+                                @else
+                                {{ trans('site.your_cart_is_empty') }}
+                                @endif
+                            </div>
                             <div class="dropdown-cart-total">
                                 <span>{{ trans('site.cart_total') }}:</span>
-                                <span class="cart-total-price float-right">$134.00</span>
+                                <span class="cart-price-total float-right">{{ number_format(Cart::getTotal(), 2) }} ₾</span>
                             </div>
                             <div class="dropdown-cart-action">
                                 <a href="{{ route('actionCartIndex') }}" class="btn btn-gray btn-block view-cart">{{ trans('site.view_cart') }}</a>

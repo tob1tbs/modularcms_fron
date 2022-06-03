@@ -114,7 +114,7 @@
                         <div class="product-default inner-quickview inner-icon">
                             <figure>
                                 <a href="{{ route('actionProductsView', $product_item->id) }}" style="height: 230px;">
-                                    <img src="{{ $product_item->photo }}" style="width: 100%; height: 100%;" alt="Product">
+                                    <img src="{{ $product_item->photo }}" style="width: 100%; height: auto;" alt="Product">
                                 </a>
                                 <div class="btn-icon-group">
                                     <a href="javascript:;" onclick="AddToCart({{ $product_item->id }})" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
@@ -164,7 +164,7 @@
                     <div class="product-default inner-quickview inner-icon">
                         <figure>
                             <a href="{{ route('actionProductsView', $product_item->id) }}" style="height: 230px;">
-                                <img src="{{ $product_item->photo }}" style="width: 100%; height: 100%;" alt="Product">
+                                <img src="{{ $product_item->photo }}" style="width: 100%; height: auto;" alt="Product">
                             </a>
                             <div class="btn-icon-group">
                                 <a href="javascript:;" onclick="AddToCart({{ $product_item->id }})" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i></a>
@@ -212,6 +212,7 @@
         loop:true,
         margin:10,
         nav:true,
+        dots:false,
         responsive:{
             0:{
                 items:1
