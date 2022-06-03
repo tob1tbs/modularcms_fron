@@ -91,10 +91,10 @@
                                         </figure>
                                     </div>
                                     @endforeach
+                                </div>
                                 @else
-                                {{ trans('site.your_cart_is_empty') }}
-                                @endif
-                            </div>
+                                <span>{{ trans('site.your_cart_is_empty') }}</span>
+                            @endif
                             <div class="dropdown-cart-total">
                                 <span>{{ trans('site.cart_total') }}:</span>
                                 <span class="cart-price-total float-right">{{ number_format(Cart::getTotal(), 2) }} ₾</span>
